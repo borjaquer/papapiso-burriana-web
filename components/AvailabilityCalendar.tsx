@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
+const PHONE = process.env.NEXT_PUBLIC_WHATSAPP || '34622738667';
+
 export default function AvailabilityCalendar() {
   const [blockedDates, setBlockedDates] = useState<Date[]>([]);
   const [checkIn, setCheckIn] = useState<Date | null>(null);
@@ -63,7 +65,7 @@ export default function AvailabilityCalendar() {
             const msg = checkIn && checkOut
               ? `Hola 👋 Quiero reservar el Papa Piso Playa Burriana desde el ${checkIn.toLocaleDateString('es-ES')} hasta el ${checkOut.toLocaleDateString('es-ES')} para [X] personas. ¿Está disponible?`
               : 'Hola 👋 Me interesa alquilar el Papa Piso Playa Burriana. ¿Me puedes informar?';
-            window.open(`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+            window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
           }}
           className="w-full bg-teal hover:bg-teal/90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-md shadow-teal/20"
         >

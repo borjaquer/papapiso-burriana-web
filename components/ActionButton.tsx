@@ -9,7 +9,7 @@ interface ActionButtonProps {
   className?: string;
 }
 
-const PHONE = process.env.NEXT_PUBLIC_WHATSAPP || '346XXXXXXXX';
+const PHONE = process.env.NEXT_PUBLIC_WHATSAPP || '34622738667';
 
 const variantStyles: Record<string, string> = {
   primary:
