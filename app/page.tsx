@@ -48,9 +48,9 @@ export default function Home() {
               Alquiler vacacional · Burriana
             </p>
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold mb-4 leading-[1.05] tracking-tight drop-shadow-lg">
-              Papa Piso
+              Playa
               <br />
-              <span className="font-light italic text-sun/70">Playa Burriana</span>
+              <span className="font-light italic text-sun/70">Burriana</span>
             </h1>
             <p className="text-lg md:text-xl mb-2 text-limestone/80 font-light max-w-xl mx-auto">
               La casa a 50 pasos del Mediterráneo
@@ -61,7 +61,7 @@ export default function Home() {
           </ScrollReveal>
 
           <div className="flex flex-wrap gap-3 justify-center">
-            <ActionButton variant="primary" action="whatsapp" message="Quiero reservar el Papa Piso para [fechas]. ¿Disponible?">
+            <ActionButton variant="primary" action="whatsapp" message="Hola, me interesa este apartamento en primera línea de Playa Burriana. ¿Podéis darme información?">
               Reservar ahora
             </ActionButton>
             <ActionButton variant="outline" action="calendar" className="!border-white/30 !text-white hover:!border-sun hover:!text-sun hover:!bg-white/10">
