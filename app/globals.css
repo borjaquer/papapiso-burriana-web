@@ -1,28 +1,96 @@
 @import "tailwindcss";
 
+/* ============================================================
+   🏖️ Papa Piso Playa Burriana — Sistema de Diseño
+   Paleta: Costa Mediterránea
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-limestone: #FBF8F3;
+  --color-midnight: #0D3B4F;
+  --color-navy: #264653;
+  --color-teal: #2A9D8F;
+  --color-sun: #E9C46A;
+  --color-terracotta: #F4A261;
+  --color-sand: #F5F0E8;
+  --color-foam: #E8F4F0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--color-limestone);
+  --color-foreground: var(--color-midnight);
+  --color-limestone: var(--color-limestone);
+  --color-midnight: var(--color-midnight);
+  --color-navy: var(--color-navy);
+  --color-teal: var(--color-teal);
+  --color-sun: var(--color-sun);
+  --color-terracotta: var(--color-terracotta);
+  --color-sand: var(--color-sand);
+  --color-foam: var(--color-foam);
   --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-fraunces);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================================
+   Base Styles
+   ============================================================ */
+
+body {
+  background-color: var(--color-limestone);
+  color: var(--color-midnight);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================================
+   Animaciones Signature
+   ============================================================ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
 }
 
 /* Animación bounce-slow para botón WhatsApp */
@@ -35,30 +103,74 @@ body {
   animation: bounce-slow 3s ease-in-out infinite;
 }
 
-/* Scroll suave global */
-html {
-  scroll-behavior: smooth;
+/* ============================================================
+   Scroll-triggered reveal — simple intersection variant
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
-/* Estilos para react-datepicker */
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   react-datepicker — Themed para la paleta Mediterránea
+   ============================================================ */
+
 .react-datepicker {
-  font-family: inherit !important;
+  font-family: var(--font-geist-sans), system-ui, sans-serif !important;
   border: 1px solid #e5e7eb !important;
-  border-radius: 0.75rem !important;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 8px 24px -4px rgb(0 0 0 / 0.08) !important;
+  background: white !important;
+  width: 100% !important;
+}
+
+.react-datepicker__month-container {
+  width: 100% !important;
 }
 
 .react-datepicker__header {
-  background-color: #f9fafb !important;
-  border-bottom: 1px solid #e5e7eb !important;
-  border-top-left-radius: 0.75rem !important;
-  border-top-right-radius: 0.75rem !important;
-  padding-top: 0.75rem !important;
+  background-color: var(--color-foam) !important;
+  border-bottom: 1px solid #d1d5db !important;
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+  padding-top: 1rem !important;
+  padding-bottom: 0.75rem !important;
 }
 
 .react-datepicker__current-month {
+  font-family: var(--font-fraunces), serif !important;
   font-weight: 600 !important;
-  color: #1f2937 !important;
+  color: var(--color-midnight) !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.02em !important;
+}
+
+.react-datepicker__day-name {
+  color: var(--color-navy) !important;
+  font-weight: 500 !important;
+  font-size: 0.8rem !important;
+  width: 2.5rem !important;
+  line-height: 2.5rem !important;
+}
+
+.react-datepicker__day {
+  width: 2.5rem !important;
+  line-height: 2.5rem !important;
+  border-radius: 0.5rem !important;
+  font-size: 0.875rem !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.react-datepicker__day:hover {
+  background-color: var(--color-foam) !important;
+  border-radius: 0.5rem !important;
 }
 
 .react-datepicker__day--disabled {
@@ -66,36 +178,48 @@ html {
   cursor: not-allowed !important;
 }
 
+.react-datepicker__day--disabled:hover {
+  background-color: transparent !important;
+}
+
 .react-datepicker__day--keyboard-selected {
-  background-color: #3b82f6 !important;
+  background-color: var(--color-teal) !important;
   color: white !important;
-  border-radius: 0.375rem !important;
+  border-radius: 0.5rem !important;
 }
 
 .react-datepicker__day--in-range {
-  background-color: #bfdbfe !important;
-  color: #1e40af !important;
+  background-color: #D1EDE8 !important;
+  color: var(--color-midnight) !important;
   border-radius: 0 !important;
 }
 
 .react-datepicker__day--in-selecting-range {
-  background-color: #dbeafe !important;
-  color: #1e40af !important;
+  background-color: #D1EDE8 !important;
+  color: var(--color-midnight) !important;
   border-radius: 0 !important;
 }
 
 .react-datepicker__day--range-start,
 .react-datepicker__day--range-end {
-  background-color: #3b82f6 !important;
+  background-color: var(--color-teal) !important;
   color: white !important;
-  border-radius: 0.375rem !important;
+  border-radius: 0.5rem !important;
 }
 
 .react-datepicker__day--today {
   font-weight: 700 !important;
-  color: #2563eb !important;
+  color: var(--color-teal) !important;
 }
 
 .react-datepicker__triangle {
   display: none !important;
+}
+
+.react-datepicker__navigation {
+  top: 1rem !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: var(--color-midnight) !important;
 }

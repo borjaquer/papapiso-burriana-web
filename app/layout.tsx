@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { Fraunces } from 'next/font/google';
 import Script from 'next/script';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { SITE, SCHEMA_VACATION_RENTAL } from '@/lib/constants';
@@ -13,6 +14,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+const fraunces = Fraunces({
+  variable: '--font-fraunces',
+  subsets: ['latin'],
+  weight: ['300', '400', '600', '700', '900'],
 });
 
 export const metadata: Metadata = {
@@ -66,7 +73,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <head>
         {/* Schema.org VacationRental JSON-LD */}

@@ -11,7 +11,6 @@ export default function WhatsAppButton() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    // Mostrar tras 3s para no interferir con carga inicial
     const timer = setTimeout(() => setShow(true), 3000);
     return () => clearTimeout(timer);
   }, []);
@@ -24,9 +23,9 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 flex items-center gap-2 
-                 bg-green-500 hover:bg-green-600 text-white 
-                 rounded-full px-4 py-3 shadow-lg 
-                 transition-all duration-300 hover:scale-105
+                 bg-teal hover:bg-teal/90 text-white 
+                 rounded-full px-4 py-3 shadow-lg shadow-teal/25
+                 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-teal/30
                  animate-bounce-slow"
       aria-label="Contactar por WhatsApp"
     >

@@ -1,7 +1,7 @@
 'use client';
 
 interface ActionButtonProps {
-  variant: 'primary' | 'secondary' | 'whatsapp' | 'outline';
+  variant: 'primary' | 'secondary' | 'whatsapp' | 'outline' | 'ghost';
   action: 'whatsapp' | 'scroll' | 'share' | 'calendar';
   target?: string;
   message?: string;
@@ -10,6 +10,19 @@ interface ActionButtonProps {
 }
 
 const PHONE = process.env.NEXT_PUBLIC_WHATSAPP || '346XXXXXXXX';
+
+const variantStyles: Record<string, string> = {
+  primary:
+    'bg-teal text-white hover:bg-teal/90 shadow-md shadow-teal/20 hover:shadow-lg hover:shadow-teal/30',
+  secondary:
+    'bg-sand text-midnight hover:bg-limestone/80 border border-midnight/10',
+  whatsapp:
+    'bg-teal text-white hover:bg-teal/90 shadow-md shadow-teal/20',
+  outline:
+    'border-2 border-midnight/20 text-midnight hover:border-teal hover:text-teal hover:bg-foam/50',
+  ghost:
+    'text-midnight/60 hover:text-teal hover:bg-foam/30',
+};
 
 export default function ActionButton({
   variant, action, target, message, children, className = '',
@@ -44,17 +57,10 @@ export default function ActionButton({
     }
   };
 
-  const variantStyles: Record<string, string> = {
-    primary: 'bg-blue-600 hover:bg-blue-700 text-white shadow-md',
-    secondary: 'bg-gray-100 hover:bg-gray-200 text-gray-800',
-    whatsapp: 'bg-green-500 hover:bg-green-600 text-white shadow-md',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50',
-  };
-
   return (
     <button
       onClick={handleClick}
-      className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 
+      className={`px-6 py-3 rounded-xl font-medium transition-all duration-200 
                   active:scale-95 cursor-pointer ${variantStyles[variant]} ${className}`}
     >
       {children}

@@ -27,18 +27,18 @@ export default function AvailabilityCalendar() {
 
   if (loading) return (
     <div className="text-center p-8">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-      <p className="mt-2 text-gray-500">Cargando disponibilidad...</p>
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-teal mx-auto"></div>
+      <p className="mt-2 text-midnight/60 text-sm">Cargando disponibilidad...</p>
     </div>
   );
 
   return (
-    <section id="calendario" className="bg-white rounded-2xl shadow-lg p-6 max-w-2xl mx-auto">
-      <h3 className="text-2xl font-bold mb-2 text-gray-800">
-        📅 Disponibilidad
+    <section id="calendario" className="bg-white rounded-2xl shadow-lg shadow-midnight/5 p-6 md:p-8 max-w-2xl mx-auto border border-midnight/5">
+      <h3 className="font-display text-2xl font-semibold mb-2 text-midnight">
+        Disponibilidad
       </h3>
-      <p className="text-gray-500 mb-6 text-sm">
-        Selecciona las fechas de tu estancia. Las fechas en gris están ya reservadas.
+      <p className="text-midnight/60 mb-6 text-sm">
+        Selecciona las fechas de tu estancia. En gris están ya reservadas.
       </p>
 
       <DatePicker
@@ -58,7 +58,6 @@ export default function AvailabilityCalendar() {
       />
 
       <div className="mt-6 flex flex-col gap-3">
-        {/* Botón de reserva que abre WhatsApp con las fechas pre-llenadas */}
         <button
           onClick={() => {
             const msg = checkIn && checkOut
@@ -66,21 +65,21 @@ export default function AvailabilityCalendar() {
               : 'Hola 👋 Me interesa alquilar el Papa Piso Playa Burriana. ¿Me puedes informar?';
             window.open(`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
           }}
-          className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-95"
+          className="w-full bg-teal hover:bg-teal/90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-md shadow-teal/20"
         >
-          {checkIn && checkOut ? '📩 Enviar solicitud de reserva por WhatsApp' : '💬 Consultar disponibilidad'}
+          {checkIn && checkOut ? 'Enviar solicitud por WhatsApp' : 'Consultar disponibilidad'}
         </button>
 
-        {/* Leyenda del calendario */}
-        <div className="flex items-center gap-4 text-sm text-gray-500 justify-center">
+        {/* Leyenda */}
+        <div className="flex items-center gap-4 text-sm text-midnight/50 justify-center">
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded bg-green-200 inline-block"></span> Disponible
+            <span className="w-3 h-3 rounded bg-foam inline-block"></span> Disponible
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded bg-gray-300 inline-block"></span> Reservado
+            <span className="w-3 h-3 rounded bg-midnight/20 inline-block"></span> Reservado
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded bg-blue-500 inline-block"></span> Tu selección
+            <span className="w-3 h-3 rounded bg-teal inline-block"></span> Tu selección
           </span>
         </div>
       </div>
