@@ -14,7 +14,7 @@ export const NAP = {
     country: 'ES',
     full: 'Av. Mediterrània 19, 12530 Burriana, Castellón',
   },
-  phone: '+34 6XX XXX XXX', // Reemplazar con nº real
+  phone: '+34 622 738 667',
   email: 'info@papapisoburriana.com',
   web: 'https://apartamentos-burriana.onrender.com',
 } as const;
@@ -22,7 +22,7 @@ export const NAP = {
 /** WhatsApp */
 export const WHATSAPP = {
   /** Número en formato internacional SIN el '+' (ej: 346XXXXXXXX) */
-  number: process.env.NEXT_PUBLIC_WHATSAPP || '346XXXXXXXX',
+  number: process.env.NEXT_PUBLIC_WHATSAPP || '34622738667',
   /** Mensaje por defecto */
   defaultMessage: '¡Hola! 🏖️ Me interesa alquilar el Papa Piso Playa Burriana',
   /** URL base wa.me */
