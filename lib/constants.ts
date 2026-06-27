@@ -16,7 +16,7 @@ export const NAP = {
   },
   phone: '+34 6XX XXX XXX', // Reemplazar con nº real
   email: 'info@papapisoburriana.com',
-  web: 'https://papapisoburriana.com',
+  web: 'https://apartamentos-burriana.onrender.com',
 } as const;
 
 /** WhatsApp */
@@ -40,7 +40,7 @@ export const SITE = {
   title: 'Apartamento Playa Burriana | Papa Piso — Reserva Directa',
   description:
     'Alquiler vacacional en primera línea de Playa Burriana. 3 dormitorios, 6 plazas, WiFi, aire acondicionado. Reserva directa sin comisiones. ☀️',
-  url: 'https://papapisoburriana.com',
+  url: 'https://apartamentos-burriana.onrender.com',
   locale: 'es_ES',
   siteName: 'Papa Piso Playa Burriana',
   images: ['/images/hero-salon.jpg'],

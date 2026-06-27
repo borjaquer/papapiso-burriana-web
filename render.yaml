@@ -1,18 +1,16 @@
-# ⚡ Render Blueprint — Papa Piso Playa Burriana Web
+# ⚡ Render Blueprint — Apartamentos Burriana (Papa Piso Playa)
 # Conecta este repositorio en Render y configurará el servicio automáticamente
 
 services:
   - type: web
-    name: papapiso-burriana-web
+    name: apartamentos-burriana
     runtime: node
     repo: https://github.com/borjaquer/papapiso-burriana-web
     plan: free
     region: frankfurt
     buildCommand: npm install && npm run build
     startCommand: npm start
-    healthCheckPath: /
-    domains:
-      - papapisoburriana.com
+    healthCheckPath: /api/health
     envVars:
       - key: NODE_VERSION
         value: 20

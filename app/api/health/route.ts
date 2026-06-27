@@ -13,7 +13,7 @@ export async function GET() {
   return NextResponse.json(
     {
       status: 'ok',
-      service: 'papapiso-burriana-web',
+      service: 'apartamentos-burriana',
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
     },
