@@ -43,7 +43,7 @@ export const SITE = {
   url: 'https://apartamentos-burriana.onrender.com',
   locale: 'es_ES',
   siteName: 'Apartamento Burriana Playa',
-  images: ['/images/hero-salon.jpg'],
+  images: ['/images/hero-salon.webp'],
   type: 'website' as const,
 };
 

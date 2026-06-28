@@ -8,12 +8,12 @@ import ScrollReveal from '@/components/ScrollReveal';
 // Imágenes para la galería
 // ============================================================
 const galleryImages = [
-  { src: '/images/foto1.jpg', alt: 'Salón-comedor del Apartamento Burriana Playa' },
-  { src: '/images/foto2.jpg', alt: 'Cocina equipada' },
-  { src: '/images/foto3.jpg', alt: 'Habitación principal' },
-  { src: '/images/foto4.jpg', alt: 'Habitación secundaria' },
-  { src: '/images/foto5.jpg', alt: 'Baño completo' },
-  { src: '/images/foto6.jpg', alt: 'Terraza con vistas' },
+  { src: '/images/foto1.webp', alt: 'Salón-comedor del Apartamento Burriana Playa' },
+  { src: '/images/foto2.webp', alt: 'Cocina equipada' },
+  { src: '/images/foto3.webp', alt: 'Habitación principal' },
+  { src: '/images/foto4.webp', alt: 'Habitación secundaria' },
+  { src: '/images/foto5.webp', alt: 'Baño completo' },
+  { src: '/images/foto6.webp', alt: 'Terraza con vistas' },
 ];
 
 export default function Home() {
@@ -26,7 +26,7 @@ export default function Home() {
         {/* Imagen de fondo */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/images/hero-salon.jpg"
+            src="/images/hero-salon.webp"
             alt="Apartamento Burriana Playa — salón con vistas al Mediterráneo"
             fill
             className="object-cover"
