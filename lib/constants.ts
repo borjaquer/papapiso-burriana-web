@@ -15,7 +15,7 @@ export const NAP = {
     full: 'Av. Mediterrània 19, 12530 Burriana, Castellón',
   },
   phone: '+34 622 738 667',
-  email: 'info@apartamentos-burriana.com',
+  email: 'borjaquer12@gmail.com',
   web: 'https://apartamentos-burriana.onrender.com',
 } as const;
 
