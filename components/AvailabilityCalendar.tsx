@@ -63,8 +63,8 @@ export default function AvailabilityCalendar() {
         <button
           onClick={() => {
             const msg = checkIn && checkOut
-              ? `Hola 👋 Quiero reservar el Papa Piso Playa Burriana desde el ${checkIn.toLocaleDateString('es-ES')} hasta el ${checkOut.toLocaleDateString('es-ES')} para [X] personas. ¿Está disponible?`
-              : 'Hola 👋 Me interesa alquilar el Papa Piso Playa Burriana. ¿Me puedes informar?';
+              ? `Hola 👋 Quiero reservar el Apartamento Burriana Playa desde el ${checkIn.toLocaleDateString('es-ES')} hasta el ${checkOut.toLocaleDateString('es-ES')} para [X] personas. ¿Está disponible?`
+              : 'Hola 👋 Me interesa alquilar el Apartamento Burriana Playa. ¿Me puedes informar?';
             window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
           }}
           className="w-full bg-teal hover:bg-teal/90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-md shadow-teal/20"

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const PHONE = process.env.NEXT_PUBLIC_WHATSAPP || '34622738667';
 const WHATSAPP_URL = `https://wa.me/${PHONE}?text=${encodeURIComponent(
-  '¡Hola! 🏖️ Me interesa alquilar el Papa Piso Playa Burriana'
+  '¡Hola! 🏖️ Me interesa alquilar el Apartamento Burriana Playa'
 )}`;
 
 export default function WhatsAppButton() {

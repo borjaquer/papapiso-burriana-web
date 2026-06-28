@@ -8,7 +8,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 // Imágenes para la galería
 // ============================================================
 const galleryImages = [
-  { src: '/images/foto1.jpg', alt: 'Salón-comedor del Papa Piso Playa Burriana' },
+  { src: '/images/foto1.jpg', alt: 'Salón-comedor del Apartamento Burriana Playa' },
   { src: '/images/foto2.jpg', alt: 'Cocina equipada' },
   { src: '/images/foto3.jpg', alt: 'Habitación principal' },
   { src: '/images/foto4.jpg', alt: 'Habitación secundaria' },
@@ -27,7 +27,7 @@ export default function Home() {
         <div className="absolute inset-0 -z-10">
           <Image
             src="/images/hero-salon.jpg"
-            alt="Papa Piso Playa Burriana — salón con vistas al Mediterráneo"
+            alt="Apartamento Burriana Playa — salón con vistas al Mediterráneo"
             fill
             className="object-cover"
             priority
@@ -160,7 +160,7 @@ export default function Home() {
                 Galería
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-semibold text-midnight leading-tight">
-                Así es el Papa Piso
+                Así es el apartamento
               </h2>
               <div className="w-12 h-0.5 bg-sun mx-auto mt-3" />
             </div>
@@ -393,7 +393,7 @@ export default function Home() {
               Reserva directamente y ahorra hasta un 15% frente a Booking o Airbnb. Sin comisiones, sin intermediarios.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <ActionButton variant="primary" action="whatsapp" message="Quiero reservar el Papa Piso Playa Burriana" className="!bg-sun !text-midnight hover:!bg-sun/90 !shadow-lg !shadow-sun/20">
+              <ActionButton variant="primary" action="whatsapp" message="Quiero reservar el Apartamento Burriana Playa" className="!bg-sun !text-midnight hover:!bg-sun/90 !shadow-lg !shadow-sun/20">
                 Reservar ahora
               </ActionButton>
               <ActionButton variant="outline" action="share" className="!border-white/30 !text-white hover:!border-sun hover:!text-sun">
@@ -412,7 +412,7 @@ export default function Home() {
       <footer className="bg-navy text-white/70 py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="font-display text-2xl font-semibold text-white mb-2">
-            Papa Piso Playa Burriana
+            Apartamento Burriana Playa
           </h3>
           <p className="text-white/40 text-sm mb-6">
             Av. Mediterrània 19, 12530 Burriana, Castellón
@@ -429,7 +429,7 @@ export default function Home() {
             </ActionButton>
           </div>
           <div className="border-t border-white/10 pt-6 text-sm text-white/30 space-y-1">
-            <p>© {new Date().getFullYear()} Papa Piso Playa Burriana. Todos los derechos reservados.</p>
+            <p>© {new Date().getFullYear()} Apartamento Burriana Playa. Todos los derechos reservados.</p>
             <p>Alquiler vacacional registrado en la Comunidad Valenciana</p>
           </div>
         </div>

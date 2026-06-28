@@ -1,11 +1,11 @@
 // ============================================================
-// 🏖️ Papa Piso Playa Burriana — Constantes Globales
+// 🏖️ Apartamento Burriana Playa — Constantes Globales
 // ============================================================
 
 /** NAP — Name, Address, Phone (consistente para SEO Local) */
 export const NAP = {
-  name: 'Papa Piso Playa Burriana',
-  nameShort: 'Papa Piso',
+  name: 'Apartamento Burriana Playa',
+  nameShort: 'Apartamento Burriana Playa',
   address: {
     street: 'Av. Mediterrània 19',
     city: 'Burriana',
@@ -15,7 +15,7 @@ export const NAP = {
     full: 'Av. Mediterrània 19, 12530 Burriana, Castellón',
   },
   phone: '+34 622 738 667',
-  email: 'info@papapisoburriana.com',
+  email: 'info@apartamentos-burriana.com',
   web: 'https://apartamentos-burriana.onrender.com',
 } as const;
 
@@ -24,7 +24,7 @@ export const WHATSAPP = {
   /** Número en formato internacional SIN el '+' (ej: 346XXXXXXXX) */
   number: process.env.NEXT_PUBLIC_WHATSAPP || '34622738667',
   /** Mensaje por defecto */
-  defaultMessage: '¡Hola! 🏖️ Me interesa alquilar el Papa Piso Playa Burriana',
+  defaultMessage: '¡Hola! 🏖️ Me interesa alquilar el Apartamento Burriana Playa',
   /** URL base wa.me */
   get url() {
     return `https://wa.me/${this.number}`;
@@ -37,12 +37,12 @@ export const WHATSAPP = {
 
 /** Metadata para SEO */
 export const SITE = {
-  title: 'Apartamento Playa Burriana | Papa Piso — Reserva Directa',
+  title: 'Apartamento Burriana Playa — Reserva Directa',
   description:
     'Alquiler vacacional en primera línea de Playa Burriana. 3 dormitorios, 6 plazas, WiFi, aire acondicionado. Reserva directa sin comisiones. ☀️',
   url: 'https://apartamentos-burriana.onrender.com',
   locale: 'es_ES',
-  siteName: 'Papa Piso Playa Burriana',
+  siteName: 'Apartamento Burriana Playa',
   images: ['/images/hero-salon.jpg'],
   type: 'website' as const,
 };

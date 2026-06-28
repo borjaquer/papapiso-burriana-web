@@ -30,7 +30,7 @@ export default function ActionButton({
   const handleClick = () => {
     switch (action) {
       case 'whatsapp': {
-        const text = message || '¡Hola! Me interesa el Papa Piso Playa Burriana 🏖️';
+        const text = message || '¡Hola! Me interesa el Apartamento Burriana Playa 🏖️';
         window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`, '_blank');
         break;
       }
@@ -42,7 +42,7 @@ export default function ActionButton({
       case 'share':
         if (navigator.share) {
           navigator.share({
-            title: 'Papa Piso Playa Burriana',
+            title: 'Apartamento Burriana Playa',
             text: 'Mira este alquiler vacacional en Burriana 🏖️',
             url: window.location.href,
           });
