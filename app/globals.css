@@ -133,6 +133,20 @@ html {
 
 .react-datepicker__month-container {
   width: 100% !important;
+  float: none !important;
+  display: inline-flex !important;
+  flex-direction: column !important;
+}
+
+/* Week: day-names + days distribuidas con flex */
+.react-datepicker__week {
+  display: flex !important;
+  justify-content: space-around !important;
+}
+
+.react-datepicker__day-names {
+  display: flex !important;
+  justify-content: space-around !important;
 }
 
 .react-datepicker__header {
@@ -156,16 +170,22 @@ html {
   color: var(--color-navy) !important;
   font-weight: 500 !important;
   font-size: 0.8rem !important;
-  width: 2.5rem !important;
+  width: calc(100% / 7) !important;
+  max-width: 2.5rem !important;
   line-height: 2.5rem !important;
+  margin: 0 !important;
+  text-align: center !important;
 }
 
 .react-datepicker__day {
-  width: 2.5rem !important;
+  width: calc(100% / 7) !important;
+  max-width: 2.5rem !important;
   line-height: 2.5rem !important;
   border-radius: 0.5rem !important;
   font-size: 0.875rem !important;
   transition: background-color 0.15s ease !important;
+  margin: 0 !important;
+  text-align: center !important;
 }
 
 .react-datepicker__day:hover {
@@ -222,4 +242,44 @@ html {
 
 .react-datepicker__navigation-icon::before {
   border-color: var(--color-midnight) !important;
+}
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+
+/* Ocultar scrollbar en contenedor con overflow-x (navegadores modernos) */
+.scrollbar-hide {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* ============================================================
+   Mobile: react-datepicker responsive
+   ============================================================ */
+
+@media (max-width: 767px) {
+  .react-datepicker__day-name {
+    max-width: none !important;
+    font-size: 0.7rem !important;
+    line-height: 2rem !important;
+  }
+
+  .react-datepicker__day {
+    max-width: none !important;
+    font-size: 0.8rem !important;
+    line-height: 2rem !important;
+  }
+
+  .react-datepicker__current-month {
+    font-size: 0.9rem !important;
+  }
+
+  .react-datepicker__header {
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.4rem !important;
+  }
 }

@@ -11,6 +11,7 @@ export default function AvailabilityCalendar() {
   const [checkIn, setCheckIn] = useState<Date | null>(null);
   const [checkOut, setCheckOut] = useState<Date | null>(null);
   const [loading, setLoading] = useState(true);
+  const [monthsShown, setMonthsShown] = useState(2);
 
   useEffect(() => {
     async function fetchIcalData() {
@@ -25,6 +26,16 @@ export default function AvailabilityCalendar() {
       }
     }
     fetchIcalData();
+  }, []);
+
+  /** monthsShown responsive: 1 en móvil (<768px), 2 en desktop */
+  useEffect(() => {
+    function handleResize() {
+      setMonthsShown(window.innerWidth < 768 ? 1 : 2);
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   if (loading) return (
@@ -43,21 +54,23 @@ export default function AvailabilityCalendar() {
         Selecciona las fechas de tu estancia. En gris están ya reservadas.
       </p>
 
-      <DatePicker
-        selected={checkIn}
-        onChange={(dates: [Date | null, Date | null]) => {
-          const [start, end] = dates;
-          setCheckIn(start);
-          setCheckOut(end);
-        }}
-        startDate={checkIn}
-        endDate={checkOut}
-        excludeDates={blockedDates}
-        selectsRange
-        inline
-        minDate={new Date()}
-        monthsShown={2}
-      />
+      <div className="overflow-x-auto -webkit-overflow-scrolling-touch scrollbar-hide">
+        <DatePicker
+          selected={checkIn}
+          onChange={(dates: [Date | null, Date | null]) => {
+            const [start, end] = dates;
+            setCheckIn(start);
+            setCheckOut(end);
+          }}
+          startDate={checkIn}
+          endDate={checkOut}
+          excludeDates={blockedDates}
+          selectsRange
+          inline
+          minDate={new Date()}
+          monthsShown={monthsShown}
+        />
+      </div>
 
       <div className="mt-6 flex flex-col gap-3">
         <button
