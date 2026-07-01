@@ -103,20 +103,22 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {[
-              { icon: '🛏️', label: '3 Dormitorios', desc: 'Hasta 6 personas' },
-              { icon: '📶', label: 'WiFi', desc: 'Fibra óptica' },
-              { icon: '❄️', label: 'A/A', desc: 'Frío / Calor' },
-              { icon: '🍳', label: 'Cocina', desc: 'Totalmente equipada' },
-              { icon: '🧺', label: 'Lavandería', desc: 'Lavadora + detergente' },
-              { icon: '📺', label: 'Smart TV', desc: 'Streaming' },
-              { icon: '🌅', label: 'Balcón', desc: 'Vistas al mar' },
-              { icon: '🅿️', label: 'Parking', desc: 'Gratuito en la calle' },
+              { icon: <IconBed />, label: '3 Dormitorios', desc: 'Hasta 6 personas' },
+              { icon: <IconWifi />, label: 'WiFi', desc: 'Fibra óptica' },
+              { icon: <IconSnowflake />, label: 'A/A', desc: 'Frío / Calor' },
+              { icon: <IconCooking />, label: 'Cocina', desc: 'Totalmente equipada' },
+              { icon: <IconWasher />, label: 'Lavandería', desc: 'Lavadora + detergente' },
+              { icon: <IconTv />, label: 'Smart TV', desc: 'Streaming' },
+              { icon: <IconSunset />, label: 'Balcón', desc: 'Vistas al mar' },
+              { icon: <IconParking />, label: 'Parking', desc: 'Gratuito en la calle' },
             ].map((item) => (
               <div
                 key={item.label}
-                className="bg-white rounded-xl p-4 text-center border border-midnight/5 hover:border-teal/20 hover:shadow-md hover:shadow-teal/5 transition-all duration-300 group"
+                className="bg-white rounded-xl p-5 text-center border border-midnight/5 hover:border-teal/20 hover:shadow-md hover:shadow-teal/5 transition-all duration-300 group"
               >
-                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+                <div className="w-11 h-11 mx-auto mb-3 rounded-full bg-foam flex items-center justify-center text-teal group-hover:bg-teal group-hover:text-white transition-colors duration-300">
+                  {item.icon}
+                </div>
                 <h3 className="font-display font-semibold text-midnight text-sm">{item.label}</h3>
                 <p className="text-xs text-midnight/50 mt-0.5">{item.desc}</p>
               </div>
@@ -283,18 +285,20 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl mx-auto">
             {[
-              { icon: '🏖️', label: 'Playa Burriana', value: 'A 50 metros' },
-              { icon: '🏪', label: 'Supermercado', value: 'A 3 min andando' },
-              { icon: '🍽️', label: 'Zona de tapas', value: 'A 2 min andando' },
-              { icon: '🏙️', label: 'Centro Burriana', value: 'A 5 min andando' },
-              { icon: '🏰', label: 'Castellón', value: '10 min en coche' },
-              { icon: '✈️', label: 'Aeropuerto de Castellón', value: '15 min en coche' },
+              { icon: <IconBeach />, label: 'Playa Burriana', value: 'A 50 metros' },
+              { icon: <IconStore />, label: 'Supermercado', value: 'A 3 min andando' },
+              { icon: <IconFork />, label: 'Zona de tapas', value: 'A 2 min andando' },
+              { icon: <IconCity />, label: 'Centro Burriana', value: 'A 5 min andando' },
+              { icon: <IconLandmark />, label: 'Castellón', value: '10 min en coche' },
+              { icon: <IconPlane />, label: 'Aeropuerto de Castellón', value: '15 min en coche' },
             ].map((item) => (
               <div
                 key={item.label}
                 className="flex items-center gap-3 bg-white rounded-lg p-3 border border-midnight/5 hover:border-teal/20 transition-all duration-200 hover:shadow-sm"
               >
-                <span className="text-xl flex-shrink-0">{item.icon}</span>
+                <span className="w-9 h-9 flex-shrink-0 rounded-full bg-foam flex items-center justify-center text-teal">
+                  {item.icon}
+                </span>
                 <div>
                   <p className="font-medium text-midnight text-sm">{item.label}</p>
                   <p className="text-xs text-midnight/50">{item.value}</p>
@@ -435,5 +439,162 @@ export default function Home() {
         </div>
       </footer>
     </main>
+  );
+}
+
+// ============================================================
+// Iconos — set lineal (stroke) consistente con la identidad visual
+// ============================================================
+
+function IconBed() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6" />
+      <path d="M3 18v2" />
+      <path d="M21 18v2" />
+      <path d="M5 10V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3" />
+      <path d="M3 14h18" />
+    </svg>
+  );
+}
+
+function IconWifi() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+      <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+      <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+      <circle cx="12" cy="20" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function IconSnowflake() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2v20" />
+      <path d="M5 6l14 12" />
+      <path d="M19 6L5 18" />
+      <path d="M8 4l4 3 4-3" />
+      <path d="M8 20l4-3 4 3" />
+    </svg>
+  );
+}
+
+function IconCooking() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 11h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-3Z" />
+      <path d="M2 11h20" />
+      <path d="M8 11V7" />
+      <path d="M16 11V7" />
+      <path d="M12 11V5" />
+    </svg>
+  );
+}
+
+function IconWasher() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="3" width="16" height="18" rx="2" />
+      <circle cx="12" cy="13" r="4.5" />
+      <path d="M12 13a4.5 4.5 0 0 0 3-4" />
+      <circle cx="7" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
+      <circle cx="9.5" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function IconTv() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="5" width="18" height="13" rx="2" />
+      <path d="M9 21h6" />
+      <path d="M12 18v3" />
+    </svg>
+  );
+}
+
+function IconSunset() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 18a5 5 0 0 0-10 0" />
+      <path d="M12 9v5" />
+      <path d="m8.5 6.5 1.5 1.5" />
+      <path d="m15.5 6.5-1.5 1.5" />
+      <path d="M2 18h20" />
+      <path d="M4 22h16" />
+    </svg>
+  );
+}
+
+function IconParking() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="3" />
+      <path d="M9 16V8h3.5a2.5 2.5 0 0 1 0 5H9" />
+    </svg>
+  );
+}
+
+function IconBeach() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 22c4-3 8-3 10-1 2-2 6-2 10 1" />
+      <path d="M12 13V3" />
+      <path d="M12 3c3 1 4 4 4 6-3 0-5-2-4-6Z" />
+      <path d="M12 9c-3 1-4 3-4 5" />
+    </svg>
+  );
+}
+
+function IconStore() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 9V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v3" />
+      <path d="M3 9h18l-1 3H4Z" />
+      <path d="M5 12v8h14v-8" />
+      <path d="M10 20v-5h4v5" />
+    </svg>
+  );
+}
+
+function IconFork() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 3v6a2 2 0 0 0 4 0V3" />
+      <path d="M9 9v12" />
+      <path d="M17 3c-1.5 1-2 3-2 5s.5 3 2 3 2-1 2-3-.5-4-2-5Z" />
+      <path d="M17 11v10" />
+    </svg>
+  );
+}
+
+function IconCity() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 21V9l6-4v16" />
+      <path d="M20 21V13l-6-4v12" />
+      <path d="M4 21h16" />
+      <path d="M8 9h.01M8 13h.01M8 17h.01" />
+    </svg>
+  );
+}
+
+function IconLandmark() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 21h18" />
+      <path d="M5 21V10M9 21V10M15 21V10M19 21V10" />
+      <path d="M2 10 12 3l10 7" />
+    </svg>
+  );
+}
+
+function IconPlane() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17.8 19.2 16 11l3.5-3.5c.8-.8.8-2.2 0-3-.8-.8-2.2-.8-3 0L13 8 4.8 6.2c-.4-.1-.8 0-1 .3l-.7.7c-.3.3-.2.7.1.9L9 12l-3 3H3l-1 1 3 1 1 3 1-1v-3l3-3 4.2 5.8c.2.3.6.4.9.1l.7-.7c.3-.2.4-.6.3-1Z" />
+    </svg>
   );
 }
