@@ -56,7 +56,7 @@ export default function Home() {
               La casa a 50 pasos del Mediterráneo
             </p>
             <p className="text-base mb-10 text-limestone/50 font-light tracking-wide">
-              Av. Mediterrània 19 · 3 dormitorios · 6 plazas · WiFi · A/A
+              Av. Mediterrània 20 · 3 dormitorios · 6 plazas · WiFi · A/A
             </p>
           </ScrollReveal>
 
@@ -276,7 +276,7 @@ export default function Home() {
               </h2>
               <div className="w-12 h-0.5 bg-sun mx-auto mt-3" />
               <p className="text-midnight/50 mt-4 text-sm">
-                Av. Mediterrània 19 — a 5 minutos del centro de Burriana
+                Av. Mediterrània 20 — a 5 minutos del centro de Burriana
               </p>
             </div>
           </ScrollReveal>
@@ -415,7 +415,7 @@ export default function Home() {
             Apartamento Burriana Playa
           </h3>
           <p className="text-white/40 text-sm mb-6">
-            Av. Mediterrània 19, 12530 Burriana, Castellón
+            Av. Mediterrània 20, 12530 Burriana, Castellón
           </p>
           <div className="flex justify-center gap-3 mb-8">
             <ActionButton variant="ghost" action="whatsapp" className="!text-white/60 hover:!text-sun">
