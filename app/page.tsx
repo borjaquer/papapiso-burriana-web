@@ -26,6 +26,15 @@ export default function Home() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Imagen de fondo */}
         <div className="absolute inset-0 -z-10 bg-midnight">
+          {/* Fondo desenfocado (solo móvil) — rellena el marco sin bandas de color plano */}
+          <Image
+            src="/images/hero-salon.webp"
+            alt=""
+            aria-hidden="true"
+            fill
+            className="object-cover scale-125 blur-2xl opacity-60 md:hidden"
+          />
+          {/* Foto nítida completa, sin recortar en móvil */}
           <Image
             src="/images/hero-salon.webp"
             alt="Apartamento Burriana Playa — salón con vistas al Mediterráneo"
