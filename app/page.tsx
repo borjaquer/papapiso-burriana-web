@@ -25,12 +25,12 @@ export default function Home() {
           ============================================================== */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Imagen de fondo */}
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 -z-10 bg-midnight">
           <Image
             src="/images/hero-salon.webp"
             alt="Apartamento Burriana Playa — salón con vistas al Mediterráneo"
             fill
-            className="object-cover"
+            className="object-contain md:object-cover"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-br from-midnight/80 via-midnight/50 to-navy/60" />
