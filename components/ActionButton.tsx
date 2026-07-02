@@ -27,19 +27,28 @@ const variantStyles: Record<string, string> = {
 export default function ActionButton({
   variant, action, target, message, children, className = '',
 }: ActionButtonProps) {
+  const track = (eventName: string, params?: Record<string, string>) => {
+    if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', eventName, params);
+    }
+  };
+
   const handleClick = () => {
     switch (action) {
       case 'whatsapp': {
         const text = message || '¡Hola! Me interesa el Apartamento Burriana Playa 🏖️';
+        track('generate_lead', { method: 'whatsapp' });
         window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`, '_blank');
         break;
       }
       case 'scroll':
         if (target) {
+          track('scroll_to_section', { section: target });
           document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
         }
         break;
       case 'share':
+        track('share', { method: navigator.share ? 'native' : 'clipboard' });
         if (navigator.share) {
           navigator.share({
             title: 'Apartamento Burriana Playa',
@@ -52,6 +61,7 @@ export default function ActionButton({
         }
         break;
       case 'calendar':
+        track('scroll_to_section', { section: 'calendario' });
         document.getElementById('calendario')?.scrollIntoView({ behavior: 'smooth' });
         break;
     }
