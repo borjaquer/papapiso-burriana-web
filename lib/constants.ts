@@ -39,13 +39,158 @@ export const WHATSAPP = {
 export const SITE = {
   title: 'Apartamento Burriana Playa — Reserva Directa',
   description:
-    'Alquiler vacacional en primera línea de Playa Burriana. 3 dormitorios, 6 plazas, WiFi, aire acondicionado. Reserva directa sin comisiones. ☀️',
+    'Alquiler vacacional en primera línea de Playa Burriana. 3 dormitorios, 6 plazas, WiFi, aire acondicionado. Cerca de playas, Museo de la Naranja, El Clot y Arenal Sound. Reserva directa sin comisiones. ☀️',
   url: 'https://apartamentos-burriana.onrender.com',
   locale: 'es_ES',
   siteName: 'Apartamento Burriana Playa',
   images: ['/images/hero-salon.webp'],
   type: 'website' as const,
 };
+
+/**
+ * Lugares y actividades de interés turístico cerca del apartamento,
+ * ordenados de más cerca a más lejos (campo `km`).
+ * `mapsQuery` se usa para generar enlaces a Google Maps y Apple Maps.
+ */
+export const NEARBY_PLACES = [
+  {
+    km: 0,
+    name: 'Playa del Arenal de Burriana',
+    category: 'Playa',
+    description:
+      'Más de 1 km de arena fina y aguas tranquilas con bandera azul, a 50 metros del apartamento. Vela, surf, kitesurf y paseos en kayak.',
+    mapsQuery: 'Playa del Arenal, Burriana',
+  },
+  {
+    km: 0,
+    name: 'Alquiler de motos de agua, kayak y paddle surf',
+    category: 'Actividad acuática',
+    description:
+      'Jet Ski Sail, en la misma Playa del Arenal: motos de agua, paddle surf individual y en grupo, kayak, banana boat y wakeboard.',
+    mapsQuery: 'Jet Ski Sail, Burriana',
+  },
+  {
+    km: 0,
+    name: 'Festival Arenal Sound',
+    category: 'Evento (verano)',
+    description:
+      'Uno de los grandes festivales de música de España, cada agosto en la misma playa de Burriana. Reserva con antelación en fechas de festival.',
+    mapsQuery: 'Playa del Arenal, Burriana',
+  },
+  {
+    km: 1.5,
+    name: 'Museo de la Naranja',
+    category: 'Cultura',
+    description:
+      'Único museo de Europa dedicado a la citricultura, en un edificio modernista. Repasa la historia del comercio de la naranja en la Plana Baixa.',
+    mapsQuery: 'Museo de la Naranja, Burriana',
+  },
+  {
+    km: 2,
+    name: 'El Clot de la Mare de Déu',
+    category: 'Naturaleza',
+    description:
+      'Paraje natural municipal con rutas a pie, remo fluvial y actividades deportivas en un entorno de gran valor ecológico.',
+    mapsQuery: 'El Clot de la Mare de Déu, Burriana',
+  },
+  {
+    km: 1,
+    name: 'Basílica de El Salvador',
+    category: 'Cultura',
+    description:
+      'Basílica menor del siglo XIII en el centro histórico de Burriana, a pocos minutos del apartamento.',
+    mapsQuery: 'Basílica de El Salvador, Burriana',
+  },
+  {
+    km: 6,
+    name: 'Vila-real',
+    category: 'Pueblo',
+    description: 'Ciudad cercana con animada vida comercial y gastronómica, sede del Villarreal CF.',
+    mapsQuery: 'Vila-real, Castellón',
+  },
+  {
+    km: 7,
+    name: 'Nules',
+    category: 'Pueblo',
+    description: 'Localidad vecina con playa propia y casco histórico tranquilo.',
+    mapsQuery: 'Nules, Castellón',
+  },
+  {
+    km: 7,
+    name: 'Almassora',
+    category: 'Pueblo',
+    description: 'Municipio costero entre Burriana y Castellón, con su propio litoral.',
+    mapsQuery: 'Almassora, Castellón',
+  },
+  {
+    km: 12,
+    name: 'El Grao de Castellón (puerto)',
+    category: 'Puerto',
+    description: 'Puerto deportivo y pesquero de Castellón, con paseo marítimo y restaurantes de pescado fresco.',
+    mapsQuery: 'El Grao, Castellón de la Plana',
+  },
+  {
+    km: 13,
+    name: 'Castellón de la Plana',
+    category: 'Ciudad',
+    description: 'Capital de la provincia: casco histórico, Planetario, mercado central y amplia oferta comercial.',
+    mapsQuery: 'Castellón de la Plana',
+  },
+  {
+    km: 22,
+    name: 'Benicàssim',
+    category: 'Pueblo costero',
+    description: 'Villas modernistas de principios del siglo XX en la Ruta de las Villas, playas y montaña del Desierto de las Palmas.',
+    mapsQuery: 'Benicàssim, Castellón',
+  },
+  {
+    km: 43,
+    name: 'Oropesa del Mar',
+    category: 'Pueblo costero',
+    description: 'Calas y playas de aguas cristalinas, castillo medieval y un animado paseo marítimo.',
+    mapsQuery: 'Oropesa del Mar, Castellón',
+  },
+  {
+    km: 53,
+    name: 'Valencia',
+    category: 'Ciudad',
+    description: 'Ciudad de las Artes y las Ciencias, casco histórico y playas urbanas — ideal para una excursión de un día.',
+    mapsQuery: 'Valencia, España',
+  },
+  {
+    km: 75,
+    name: 'Peñíscola',
+    category: 'Pueblo costero',
+    description: 'Casco antiguo amurallado sobre una península rocosa, con el Castillo del Papa Luna asomado al Mediterráneo.',
+    mapsQuery: 'Peñíscola, Castellón',
+  },
+] as const;
+
+/** Genera enlaces a apps de mapas a partir de una consulta de texto */
+export function mapsLinks(query: string) {
+  const encoded = encodeURIComponent(query);
+  return {
+    google: `https://www.google.com/maps/search/?api=1&query=${encoded}`,
+    apple: `https://maps.apple.com/?q=${encoded}`,
+  };
+}
+
+/** Schema.org ItemList de los lugares turísticos cercanos (para rich results) */
+export const SCHEMA_NEARBY_PLACES = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Qué hacer cerca de Apartamento Burriana Playa',
+  itemListOrder: 'https://schema.org/ItemListOrderAscending',
+  itemListElement: NEARBY_PLACES.map((place, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': place.category === 'Playa' ? 'Beach' : 'TouristAttraction',
+      name: place.name,
+      description: place.description,
+    },
+  })),
+} as const;
 
 /** Schema.org VacationRental (JSON-LD) */
 export const SCHEMA_VACATION_RENTAL = {
@@ -64,8 +209,8 @@ export const SCHEMA_VACATION_RENTAL = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 39.8833, // Aprox Burriana
-    longitude: -0.0833,
+    latitude: 39.8278478,
+    longitude: -0.1104436,
   },
   telephone: NAP.phone,
   email: NAP.email,

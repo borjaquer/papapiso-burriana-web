@@ -3,6 +3,7 @@ import ActionButton from '@/components/ActionButton';
 import CalendarWrapper from '@/components/CalendarWrapper';
 import WaveDivider from '@/components/WaveDivider';
 import ScrollReveal from '@/components/ScrollReveal';
+import { NEARBY_PLACES, mapsLinks } from '@/lib/constants';
 
 // ============================================================
 // Imágenes para la galería
@@ -312,6 +313,87 @@ export default function Home() {
       <WaveDivider variant="cream" />
 
       {/* ==============================================================
+          TURISMO — Qué hacer en Burriana y alrededores, de más cerca a más lejos
+          ============================================================== */}
+      <section id="que-hacer" className="py-20 px-4 bg-sand">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-14">
+              <p className="font-display text-teal text-sm uppercase tracking-[0.25em] mb-3">
+                Turismo en Burriana
+              </p>
+              <h2 className="font-display text-4xl md:text-5xl font-semibold text-midnight leading-tight">
+                Qué hacer y qué visitar
+              </h2>
+              <div className="w-16 h-0.5 bg-sun mx-auto mt-4" />
+              <p className="text-midnight/60 mt-4 max-w-2xl mx-auto leading-relaxed">
+                Playas, museos, naturaleza y pueblos con encanto — ordenados de más cerca a
+                más lejos del apartamento, con la distancia exacta y un enlace directo a
+                Google Maps o Apple Maps para llegar sin complicaciones.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ol className="relative border-l-2 border-teal/15 ml-3 md:ml-6 space-y-8">
+            {NEARBY_PLACES.map((place) => {
+              const links = mapsLinks(place.mapsQuery);
+              return (
+                <li key={place.name} className="relative pl-8 md:pl-10">
+                  <ScrollReveal>
+                    {/* Punto en la línea de tiempo */}
+                    <span className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal border-4 border-sand" />
+
+                    <div className="bg-white rounded-xl p-5 border border-midnight/5 hover:border-teal/20 hover:shadow-md hover:shadow-teal/5 transition-all duration-300">
+                      <div className="flex flex-wrap items-start justify-between gap-2 mb-1.5">
+                        <div>
+                          <span className="inline-block text-[11px] font-semibold uppercase tracking-wide text-teal bg-foam rounded-full px-2.5 py-0.5 mb-1.5">
+                            {place.category}
+                          </span>
+                          <h3 className="font-display font-semibold text-midnight text-lg leading-snug">
+                            {place.name}
+                          </h3>
+                        </div>
+                        <span className="font-display text-terracotta md:text-2xl text-xl font-semibold whitespace-nowrap">
+                          {place.km === 0 ? 'En la playa' : `${place.km} km`}
+                        </span>
+                      </div>
+
+                      <p className="text-sm text-midnight/60 leading-relaxed mb-3">
+                        {place.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        <a
+                          href={links.google}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-medium text-teal border border-teal/30 rounded-full px-3 py-1.5 hover:bg-teal hover:text-white hover:border-teal transition-colors duration-200"
+                        >
+                          <IconPin />
+                          Google Maps
+                        </a>
+                        <a
+                          href={links.apple}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-medium text-midnight/70 border border-midnight/15 rounded-full px-3 py-1.5 hover:bg-midnight hover:text-white hover:border-midnight transition-colors duration-200"
+                        >
+                          <IconPin />
+                          Apple Maps
+                        </a>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </section>
+
+      <WaveDivider variant="cream" />
+
+      {/* ==============================================================
           RESEÑAS — La voz de los huéspedes
           ============================================================== */}
       <section id="resenas" className="py-20 px-4 bg-limestone">
@@ -587,6 +669,15 @@ function IconLandmark() {
       <path d="M3 21h18" />
       <path d="M5 21V10M9 21V10M15 21V10M19 21V10" />
       <path d="M2 10 12 3l10 7" />
+    </svg>
+  );
+}
+
+function IconPin() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z" />
+      <circle cx="12" cy="10" r="3" />
     </svg>
   );
 }

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { Fraunces } from 'next/font/google';
 import Script from 'next/script';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { SITE, SCHEMA_VACATION_RENTAL } from '@/lib/constants';
+import { SITE, SCHEMA_VACATION_RENTAL, SCHEMA_NEARBY_PLACES } from '@/lib/constants';
 import './globals.css';
 
 const geistSans = Geist({
@@ -85,6 +85,16 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(SCHEMA_VACATION_RENTAL),
+          }}
+          strategy="beforeInteractive"
+        />
+
+        {/* Schema.org ItemList — lugares turísticos cercanos */}
+        <Script
+          id="schema-nearby-places"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(SCHEMA_NEARBY_PLACES),
           }}
           strategy="beforeInteractive"
         />
