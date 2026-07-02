@@ -237,6 +237,11 @@ export const SCHEMA_VACATION_RENTAL = {
   checkinTime: '16:00',
   checkoutTime: '11:00',
   priceRange: '€€',
+  identifier: {
+    '@type': 'PropertyValue',
+    name: 'Registro de Turismo de la Comunitat Valenciana',
+    value: 'VT-45170-CS',
+  },
   // AggregateRating se añadirá cuando haya reseñas
 } as const;
 

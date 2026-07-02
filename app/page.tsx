@@ -516,7 +516,7 @@ export default function Home() {
           </div>
           <div className="border-t border-white/10 pt-6 text-sm text-white/30 space-y-1">
             <p>© {new Date().getFullYear()} Apartamento Burriana Playa. Todos los derechos reservados.</p>
-            <p>Alquiler vacacional registrado en la Comunidad Valenciana</p>
+            <p>Vivienda de uso turístico · Registro Turismo CV: <span className="text-white/50 font-medium">VT-45170-CS</span></p>
           </div>
         </div>
       </footer>
