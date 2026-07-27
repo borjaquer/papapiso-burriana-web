@@ -1,0 +1,404 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papa Piso Playa Burriana | Propuestas de Lujo</title>
+    <style>
+        :root {
+            /* Palette: Sands & Deep Sea */
+            --bg: oklch(98% 0.005 90);
+            --surface: oklch(100% 0 0);
+            --fg: oklch(20% 0.02 260);
+            --muted: oklch(55% 0.02 260);
+            --border: oklch(92% 0.01 90);
+            --accent: oklch(45% 0.12 240); /* Deep Sea Blue */
+            --accent-light: oklch(85% 0.05 90); /* Sand Gold */
+            
+            --font-display: 'Playfair Display', 'Georgia', serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            
+            --radius: 4px;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--fg); 
+            font-family: var(--font-body); 
+            line-height: 1.6; 
+            transition: var(--transition);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* VARIANT SELECTOR UI */
+        .variant-switcher {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 0.5rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            display: flex;
+            gap: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .variant-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            border: none;
+            background: transparent;
+            color: var(--fg);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .variant-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* BASE LAYOUT */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--fg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--fg);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 400;
+        }
+
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--muted);
+            max-width: 500px;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        /* --- VARIANT 1: THE COASTAL ESTATE (Editorial/Asymmetric) --- */
+        body.variant-coastal {
+            --radius: 0px;
+        }
+        .variant-coastal .hero {
+            justify-content: flex-start;
+            background: linear-gradient(to right, var(--bg) 40%, transparent);
+        }
+        .variant-coastal .hero-title {
+            font-style: italic;
+        }
+        .variant-coastal .hero-img {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 60%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1502672263558-64f94f97a12f?auto=format&fit=crop&q=80&w=1200') center/cover;
+        }
+        .variant-coastal .section {
+            padding: 8rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .variant-coastal .img-frame {
+            aspect-ratio: 4/5;
+            background: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* --- VARIANT 2: MODERN SERENITY (Minimalist/Clean) --- */
+        body.variant-serenity {
+            --radius: 20px;
+            background: white;
+        }
+        .variant-serenity .hero {
+            text-align: center;
+            justify-content: center;
+            background: oklch(95% 0.01 90);
+        }
+        .variant-serenity .hero-content {
+            margin: 0 auto;
+        }
+        .variant-serenity .hero-img {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            right: 2rem;
+            bottom: 2rem;
+            z-index: -1;
+            border-radius: var(--radius);
+            background: url('https://images.unsplash.com/photo-1499793984408-3159d775d67a?auto=format&fit=crop&q=80&w=1200') center/cover;
+            opacity: 0.3;
+        }
+        .variant-serenity .section {
+            padding: 6rem 5%;
+            text-align: center;
+        }
+        .variant-serenity .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .variant-serenity .card {
+            background: white;
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .variant-serenity .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .variant-serenity .card-img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: calc(var(--radius) - 4px);
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- VARIANT 3: BOUTIQUE EXPERIENCE (Contemporary/Layered) --- */
+        body.variant-boutique {
+            --radius: 12px;
+            background: oklch(92% 0.01 80);
+        }
+        .variant-boutique .hero {
+            padding-top: 10vh;
+        }
+        .variant-boutique .hero-title {
+            font-weight: 700;
+            color: var(--accent);
+            position: relative;
+        }
+        .variant-boutique .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-light);
+        }
+        .variant-boutique .hero-img {
+            position: absolute;
+            right: 5%;
+            top: 15%;
+            width: 45%;
+            height: 70%;
+            border-radius: var(--radius);
+            background: url('https://images.unsplash.com/photo-1512917774047-be657f566e57?auto=format&fit=crop&q=80&w=1200') center/cover;
+            box-shadow: 40px 40px 0px var(--accent-light);
+        }
+        .variant-boutique .section {
+            padding: 6rem 5%;
+            background: white;
+            margin: 2rem 5%;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        .variant-boutique .featured-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .variant-boutique .list-item {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .variant-boutique .list-item:hover {
+            background: oklch(98% 0.01 90);
+            padding-left: 3rem;
+        }
+        .variant-boutique .list-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { height: auto; padding-top: 8rem; padding-bottom: 4rem; }
+            .variant-coastal .section { grid-template-columns: 1fr; }
+            .variant-boutique .hero-img { position: relative; width: 100%; height: 300px; margin-top: 2rem; }
+            .variant-coastal .hero-img { position: relative; width: 100%; height: 300px; margin-top: 2rem; }
+        }
+    </style>
+</head>
+<body class="variant-coastal">
+
+    <div class="variant-switcher">
+        <button class="variant-btn active" onclick="setVariant('coastal', this)">The Coastal Estate</button>
+        <button class="variant-btn" onclick="setVariant('serenity', this)">Modern Serenity</button>
+        <button class="variant-btn" onclick="setVariant('boutique', this)">Boutique Experience</button>
+    </div>
+
+    <nav class="nav">
+        <div class="logo">PAPA PISO</div>
+        <ul class="nav-links">
+            <li><a href="#">Propiedades</a></li>
+            <li><a href="#">Experiencias</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Santuarios de descanso en la costa de Burriana.</h1>
+            <p class="hero-desc">Experiencias residenciales diseñadas para quienes buscan la calma del Mediterráneo con la sofisticación de un hogar boutique.</p>
+            <a href="#" class="btn-primary">Explorar Propiedades</a>
+        </div>
+        <div class="hero-img"></div>
+    </section>
+
+    <section class="section">
+        <div class="content-side">
+            <h2 class="hero-title" style="font-size: 2.5rem;">Curaduría de Espacios</h2>
+            <p class="hero-desc">Cada propiedad es seleccionada por su arquitectura, luz natural y proximidad a las playas más vírgenes de la zona.</p>
+        </div>
+        
+        <!-- Este contenedor cambia según la variante mediante CSS -->
+        <div class="variant-content">
+            <div class="variant-coastal-only">
+                <div class="img-frame" style="background-image: url('https://images.unsplash.com/photo-1502672263558-64f94f97a12f?auto=format&fit=crop&q=80&w=600');"></div>
+            </div>
+            
+            <div class="variant-serenity-only grid-cards" style="display: none;">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512917774047-be657f566e57?auto=format&fit=crop&q=80&w=400');"></div>
+                    <h3>Villa Brisa Marina</h3>
+                    <p>Luz infinita y vistas al mar.</p>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1499793984408-3159d775d67a?auto=format&fit=crop&q=80&w=400');"></div>
+                    <h3>Apartamento Zen</h3>
+                    <p>Minimalismo en el corazón de Burriana.</p>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1502672263558-64f94f97a12f?auto=format&fit=crop&q=80&w=400');"></div>
+                    <h3>Casa del Sol</h3>
+                    <p>Santuario familiar de lujo.</p>
+                </div>
+            </div>
+
+            <div class="variant-boutique-only featured-list" style="display: none;">
+                <div class="list-item">
+                    <div class="list-img" style="background-image: url('https://images.unsplash.com/photo-1512917774047-be657f566e57?auto=format&fit=crop&q=80&w=200');"></div>
+                    <div>
+                        <h3>Residencia Azure</h3>
+                        <p>Diseño contemporáneo con acceso directo a la arena blanca.</p>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="list-img" style="background-image: url('https://images.unsplash.com/photo-1499793984408-3159d775d67a?auto=format&fit=crop&q=80&w=200');"></div>
+                    <div>
+                        <h3>Loft Mediterráneo</h3>
+                        <p>Espacios abiertos y materiales orgánicos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function setVariant(variant, btn) {
+            // Update Body Class
+            document.body.className = 'variant-' + variant;
+            
+            // Update Buttons
+            document.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Show/Hide specific content blocks
+            const coastal = document.querySelector('.variant-coastal-only');
+            const serenity = document.querySelector('.variant-serenity-only');
+            const boutique = document.querySelector('.variant-boutique-only');
+            
+            coastal.style.display = (variant === 'coastal') ? 'block' : 'none';
+            serenity.style.display = (variant === 'serenity') ? 'grid' : 'none';
+            boutique.style.display = (variant === 'boutique') ? 'flex' : 'none';
+        }
+    </script>
+</body>
+</html>

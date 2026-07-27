@@ -1,0 +1,326 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santuario Burriana | Solar Gallery</title>
+    <style>
+        :root {
+            --bg: oklch(100% 0 0); /* Blanco Puro */
+            --fg: oklch(25% 0.02 260); /* Carbón Profundo */
+            --muted: oklch(50% 0.01 260); /* Gris Seda */
+            --accent: oklch(40% 0.05 40); /* Tierra Quemada / Terracota Suave */
+            
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+            
+            --ease-luxury: cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        @import url('https://fonts.googleapis.com/css2? laInter:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--fg); 
+            font-family: var(--font-body); 
+            line-height: 1.7; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation - Pure White Floating */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            mix-blend-mode: multiply;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--fg);
+        }
+
+        .nav-cta {
+            text-decoration: none;
+            color: var(--fg);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--fg);
+            transition: all 0.3s var(--ease-luxury);
+        }
+        .nav-cta:hover {
+            background: var(--fg);
+            color: white;
+        }
+
+        /* Hero Section - The aereation */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            text-align: center;
+        }
+
+        .hero-image-frame {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1.8s var(--ease-luxury);
+            box-shadow: 0 30px 100px rgba(0,0,0,0.05);
+        }
+        .hero-image-frame.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-image-frame img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            max-width: 900px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s var(--ease-luxury) 0.5s;
+        }
+        .hero-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Curated Flow - White Space Logic */
+        .curated-flow {
+            padding: 10vh 5vw;
+        }
+
+        .flow-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10vw;
+            align-items: center;
+            margin-bottom: 20vh;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s var(--ease-luxury);
+        }
+        .flow-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .flow-item.reverse { direction: rtl; }
+        .flow-item.reverse .flow-text { direction: ltr; }
+
+        .flow-image {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .flow-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1.5s var(--ease-luxury);
+        }
+        .flow-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .flow-text {
+            max-width: 400px;
+        }
+
+        .flow-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .flow-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .flow-desc {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--muted);
+        }
+
+        /* The Minimal Grid */
+        .minimal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 5vw;
+            margin-bottom: 10vh;
+        }
+
+        .grid-cell {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: #f9f9f9;
+        }
+        .grid-cell img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.2);
+            transition: all 0.6s var(--ease-luxury);
+        }
+        .grid-cell:hover img {
+            filter: grayscale(0);
+            transform: scale(1.05);
+        }
+
+        /* Footer - High End */
+        footer {
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            border-top: 0.5px solid rgba(0,0,0,0.05);
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .flow-item { grid-template-columns: 1fr; gap: 3rem; }
+            .minimal-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.5rem; }
+            .nav-cta { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Papa Piso</div>
+        <a href="#reservar" class="nav-cta">Reservar Estancia</a>
+    </nav>
+
+    <!-- HERO: La primera impresión de luz -->
+    <section class="hero">
+        <div class="hero-image-frame" data-reveal>
+            <img src="mr2t3d3p-salon-comedor-con-saofa-y-televison-.jpeg" alt="Salón">
+        </div>
+        <h1 class="hero-title" data-reveal>El Lujo de la<br>Sencillez.</h1>
+    </section>
+
+    <!-- FLOW: Recorrido Curado -->
+    <section class="curated-flow">
+        
+        <!-- Escena 1: El Descanso -->
+        <div class="flow-item" data-reveal>
+            <div class="flow-image">
+                <img src="mr2t3d25-dormitorio-principal-con-cama-de-matrimonio-.jpeg" alt="Dormitorio">
+            </div>
+            <div class="flow-text">
+                <span class="flow-label">01 / El Reposo</span>
+                <h2 class="flow-title">Santuarios de sueño.</h2>
+                <p class="flow-desc">Espacios donde la luz natural define el ritmo del día y la serenidad es la única prioridad.</p>
+            </div>
+        </div>
+
+        <!-- Escena 2: La Cocina -->
+        <div class="flow-item reverse" data-reveal>
+            <div class="flow-image">
+                <img src="mr2t3d0v-cocinan.jpeg" alt="Cocina">
+            </div>
+            <div class="flow-text">
+                <span class="flow-label">02 / Materia</span>
+                <h2 class="flow-title">Funcionalidad pura.</h2>
+                <p class="flow-desc">Equipamiento contemporáneo integrado en una atmósfera de limpieza y orden absoluto.</p>
+            </div>
+        </div>
+
+        <!-- Escena 3: La Terraza -->
+        <div class="flow-item" data-reveal>
+            <div class="flow-image">
+                <img src="mr2t3d50-terraza-sin-vistas-al-mar-.jpeg" alt="Terraza">
+            </div>
+            <div class="flow-text">
+                <span class="flow-label">03 / Aire Libre</span>
+                <h2 class="flow-title">El mirador privado.</h2>
+                <p class="flow-desc">Un encuentro directo con la brisa de Burriana, diseñado para la contemplación.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- GRID: Detalles Rápidos -->
+    <section class="minimal-grid">
+        <div class="grid-cell"><img src="mr2t3d6q-unico-baño-_2_.jpeg" alt="Baño"></div>
+        <div class="grid-cell"><img src="mr2t3d32-hall-recibidor-.jpeg" alt="Hall"></div>
+        <div class="grid-cell"><img src="mr2t3d2t-dormitorio-secundario-cama-de-matrimonio-.jpeg" alt="Dormitorio 2"></div>
+    </section>
+
+    <footer>
+        <span class="footer-brand">Papa Piso</span>
+        <p style="font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);">
+            Curated Residence &bull; Burriana, Spain
+        </p>
+    </footer>
+
+    <script>
+        // Simple Reveal Engine
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('[data-reveal]').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Trigger inicial para el hero
+        window.dispatchEvent(new Event('load'));
+        document.querySelector('.hero-image-frame').classList.add('visible');
+        document.querySelector('.hero-title').classList.add('visible');
+    </script>
+</body>
+</html>

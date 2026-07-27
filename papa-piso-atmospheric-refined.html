@@ -1,0 +1,287 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papa Piso | Luxury Retreat Burriana</title>
+    <style>
+        :root {
+            --bg: oklch(12% 0.01 260); /* Sable Black - No negro puro */
+            --fg: oklch(96% 0.01 90); /* Ivory Silk */
+            --muted: oklch(65% 0.02 90); /* Taupe */
+            --accent: oklch(88% 0.05 95); /* Soft Champagne */
+            
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+            
+            --transition-smooth: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--fg); 
+            font-family: var(--font-body); 
+            line-height: 1.5; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation - Flotante y etérea */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .nav-cta {
+            pointer-events: auto;
+            text-decoration: none;
+            color: var(--fg);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 0.7rem 1.8rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+        }
+        .nav-cta:hover {
+            background: var(--fg);
+            color: var(--bg);
+            border-color: var(--fg);
+        }
+
+        /* Concepto de "Sábanas" y Capas */
+        .layer {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5vw;
+        }
+
+        .img-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5) contrast(1.1);
+            transition: transform 2s ease-out;
+        }
+
+        .content-box {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Tipografía de Diseño Editorial */
+        .display-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 12vw, 7rem);
+            line-height: 1;
+            font-style: italic;
+            margin-bottom: 2rem;
+            max-width: 900px;
+            letter-spacing: -0.02em;
+        }
+
+        .display-desc {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 200;
+            color: var(--muted);
+            max-width: 450px;
+            margin-bottom: 3rem;
+            border-left: 1px solid var(--accent);
+            padding-left: 2rem;
+        }
+
+        /* Grid Asimétrico de Detalles */
+        .curated-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 4vw;
+            padding: 10vh 5vw;
+            background: var(--bg);
+        }
+
+        .curated-item {
+            position: relative;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .curated-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.3) brightness(0.8);
+            transition: var(--transition-smooth);
+        }
+
+        .curated-item:hover img {
+            filter: grayscale(0) brightness(1);
+            transform: scale(1.02);
+        }
+
+        .curated-item .caption {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--muted);
+        }
+
+        /* Modificadores de Grid */
+        .col-6 { grid-column: span 6; aspect-ratio: 1/1; }
+        .col-4 { grid-column: span 4; aspect-ratio: 3/4; }
+        .col-8 { grid-column: span 8; aspect-ratio: 16/9; }
+        .col-12 { grid-column: span 12; aspect-ratio: 21/9; }
+
+        /* Sección de Cierre - Terraza */
+        .final-layer {
+            height: 120vh;
+            background: black;
+        }
+        .final-layer .img-container {
+            height: 70%;
+            top: 30%;
+        }
+
+        footer {
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .curated-grid > div { grid-column: span 12 !important; aspect-ratio: 4/3 !important; }
+            .display-title { font-size: 3rem; }
+            .nav-cta { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Papa Piso</div>
+        <a href="#reservar" class="nav-cta">Reservar Estancia</a>
+    </nav>
+
+    <!-- ESCENA 1: EL SALÓN (El ancla visual) -->
+    <section class="layer">
+        <div class="img-container">
+            <img src="mr2t3d3p-salon-comedor-con-saofa-y-televison-.jpeg" alt="Santuario Salón">
+        </div>
+        <div class="content-box" style="text-align: left;">
+            <h1 class="display-title">Silencio,<br>Luz y Espacio.</h1>
+            <p class="display-desc">Una curaduría de descanso donde el tiempo se detiene y la arquitectura abraza la calma de Burriana.</p>
+        </div>
+    </section>
+
+    <!-- ESCENA 2: EL DESCANSO (Dormitorio) -->
+    <section class="layer" style="text-align: right;">
+        <div class="img-container">
+            <img src="mr2t3d25-dormitorio-principal-con-cama-de-matrimonio-.jpeg" alt="Dormitorio Principal">
+        </div>
+        <div class="content-box" style="margin-left: auto;">
+            <h2 class="display-title">Santuarios<br>de Sueño.</h2>
+            <p class="display-desc" style="margin-left: auto; border-left: none; border-right: 1px solid var(--accent); padding-left: 0; padding-right: 2rem; text-align: right;">
+                Habitaciones diseñadas bajo la premisa del minimalismo cálido y la pureza visual.
+            </p>
+        </div>
+    </section>
+
+    <!-- ESCENA 3: LA COLECCIÓN (Grid Editorial) -->
+    <section class="curated-grid">
+        <div class="curated-item col-8">
+            <img src="mr2t3d0v-cocinan.jpeg" alt="Cocina">
+            <span class="caption">Esencia Culinaria</span>
+        </div>
+        <div class="curated-item col-4">
+            <img src="mr2t3d6q-unico-baño-_2_.jpeg" alt="Baño">
+            <span class="caption">Pureza Mineral</span>
+        </div>
+        <div class="curated-item col-4">
+            <img src="mr2t3d32-hall-recibidor-.jpeg" alt="Hall">
+            <span class="caption">El Umbral</span>
+        </div>
+        <div class="curated-item col-8">
+            <img src="mr2t3d2t-dormitorio-secundario-cama-de-matrimonio-.jpeg" alt="Dormitorio 2">
+            <span class="caption">Armonía Compartida</span>
+        </div>
+    </section>
+
+    <!-- ESCENA 4: EL CIELO (Terraza) -->
+    <section class="layer final-layer">
+        <div class="img-container">
+            <img src="mr2t3d50-terraza-sin-vistas-al-mar-.jpeg" alt="Terraza">
+        </div>
+        <div class="content-box" style="text-align: center; margin-bottom: 10vh;">
+            <h2 class="display-title">Bajo el cielo<br>de Burriana.</h2>
+            <p class="display-desc" style="margin: 0 auto; border: none; text-align: center; padding: 0;">
+                Un mirador privado para conectar con la brisa mediterránea y la luz infinita.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <span class="footer-brand">Papa Piso</span>
+        <p style="color: var(--muted); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;">
+            Expérience Résidentielle de Luxe &bull; Burriana
+        </p>
+    </footer>
+
+    <script>
+        // Efecto de parallax simple para las imágenes al hacer scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelectorAll('.img-container img').forEach(img => {
+                const speed = 0.05;
+                img.style.transform = `scale(${1 + scrolled * 0.0001}) translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

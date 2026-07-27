@@ -1,0 +1,318 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santuario Burriana | Papa Piso</title>
+    <style>
+        :root {
+            --bg: oklch(98% 0.005 90); /* Blanco roto seda */
+            --bg-dark: oklch(15% 0.02 260); /* Azul noche profundo */
+            --fg: oklch(20% 0.02 260);
+            --muted: oklch(50% 0.02 260);
+            --accent: oklch(55% 0.12 150); /* Verde oliva sofisticado / Sage */
+            --gold: oklch(85% 0.06 90); /* Champán */
+            
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+            
+            --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--fg); 
+            font-family: var(--font-body); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, transparent 100%);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .nav-cta {
+            text-decoration: none;
+            color: var(--fg);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 1px solid var(--fg);
+            padding: 0.6rem 1.5rem;
+            transition: var(--transition);
+        }
+        .nav-cta:hover {
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        /* Hero Section - El Impacto */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.8);
+            animation: slowZoom 20s infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 5%;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Layout Narrativo */
+        .section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            max-width: 600px;
+        }
+
+        .label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.2;
+        }
+
+        /* Gallery Grid - El Apartamento */
+        .apartment-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            background: #eee;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Variantes de tamaño de foto para ritmo visual */
+        .span-6 { grid-column: span 6; aspect-ratio: 16/10; }
+        .span-4 { grid-column: span 4; aspect-ratio: 1/1; }
+        .span-8 { grid-column: span 8; aspect-ratio: 3/2; }
+        .span-12 { grid-column: span 12; aspect-ratio: 21/9; }
+
+        /* Sección de Detalle Oscura */
+        .dark-section {
+            background-color: var(--bg-dark);
+            color: white;
+        }
+        .dark-section .label { color: var(--gold); }
+        .dark-section .section-title { color: white; }
+
+        /* Detalle de Estancia */
+        .room-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 10rem;
+        }
+
+        .room-text h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .room-text p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .dark-section .room-text p {
+            color: oklch(80% 0.01 260);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        @media (max-width: 768px) {
+            .apartment-grid > div { grid-column: span 12 !important; aspect-ratio: 4/3 !important; }
+            .room-detail { grid-template-columns: 1fr; }
+            .nav-cta { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Papa Piso</div>
+        <a href="#reservar" class="nav-cta">Reservar Estancia</a>
+    </nav>
+
+    <!-- HERO: El primer impacto con el Salón -->
+    <section class="hero">
+        <img src="mr2t3d3p-salon-comedor-con-saofa-y-televison-.jpeg" class="hero-img" alt="Salón Papa Piso">
+        <div class="hero-content">
+            <h1 class="hero-title">Un refugio de luz y serenidad en Burriana.</h1>
+            <p style="font-size: 1.2rem; font-weight: 300; opacity: 0.9;">Descubre la armonía perfecta entre el confort moderno y la brisa del Mediterráneo.</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 1: Galería Arquitectónica -->
+    <section class="section">
+        <div class="section-header">
+            <span class="label">Espacios Curados</span>
+            <h2 class="section-title">Diseñado para el descanso absoluto.</h2>
+        </div>
+
+        <div class="apartment-grid">
+            <!-- Dormitorio Principal (Grande) -->
+            <div class="photo-card span-8">
+                <img src="mr2t3d25-dormitorio-principal-con-cama-de-matrimonio-.jpeg" alt="Dormitorio Principal">
+            </div>
+            <!-- Hall (Cuadrado) -->
+            <div class="photo-card span-4">
+                <img src="mr2t3d32-hall-recibidor-.jpeg" alt="Recibidor">
+            </div>
+            <!-- Baño (Cuadrado) -->
+            <div class="photo-card span-4">
+                <img src="mr2t3d6q-unico-baño-_2_.jpeg" alt="Baño Detalle">
+            </div>
+            <!-- Dormitorio Secundario (Mediano) -->
+            <div class="photo-card span-4">
+                <img src="mr2t3d2t-dormitorio-secundario-cama-de-matrimonio-.jpeg" alt="Dormitorio Secundario">
+            </div>
+            <!-- Tercer Dormitorio (Cuadrado) -->
+            <div class="photo-card span-4">
+                <img src="mr2t3d4v-tercer-dormitorio-con-escritorio-y-cama-individual-.jpeg" alt="Tercer Dormitorio">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: Detalle de la Experiencia (Dark Mode) -->
+    <section class="section dark-section">
+        <div class="section-header">
+            <span class="label">La Experiencia</span>
+            <h2 class="section-title">Detalles que elevan la estancia.</h2>
+        </div>
+
+        <div class="room-detail">
+            <div class="photo-card span-12" style="grid-column: auto; aspect-ratio: 16/9;">
+                <img src="mr2t3d0v-cocinan.jpeg" alt="Cocina">
+            </div>
+            <div class="room-text">
+                <h3>Gastronomía y Confort</h3>
+                <p>Una cocina equipada con todo lo necesario para disfrutar de los sabores locales de Burriana en un ambiente de total modernidad y limpieza.</p>
+                <div style="display:flex; gap: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--gold);">✓ Equipamiento Premium</span>
+                    <span style="font-size: 0.8rem; color: var(--gold);">✓ Espacios Abiertos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="room-detail" style="direction: rtl;">
+            <div class="photo-card span-12" style="grid-column: auto; aspect-ratio: 16/9; direction: ltr;">
+                <img src="mr2t3d7b-unico-baño-.jpeg" alt="Baño">
+            </div>
+            <div class="room-text" style="direction: ltr;">
+                <h3>Pureza y Relax</h3>
+                <p>Baños diseñados como spas privados, donde la iluminación y la calidad de los materiales invitan a la desconexión total.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: El Exterior -->
+    <section class="section">
+        <div class="section-header">
+            <span class="label">Aire Libre</span>
+            <h2 class="section-title">Tu terraza, tu mirador privado.</h2>
+        </div>
+        <div class="photo-card span-12" style="grid-column: span 12; aspect-ratio: 21/9;">
+            <img src="mr2t3d50-terraza-sin-vistas-al-mar-.jpeg" alt="Terraza Papa Piso">
+        </div>
+        <p style="margin-top: 2rem; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto; color: var(--muted);">
+            Un espacio abierto para disfrutar de los atardeceres de Burriana, leer un libro o simplemente respirar el aire del Mediterráneo.
+        </p>
+    </section>
+
+    <footer>
+        <div class="logo" style="margin-bottom: 1rem;">Papa Piso</div>
+        <p>&copy; 2024 Alquileres Vacacionales de Lujo Burriana. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

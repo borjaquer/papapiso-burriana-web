@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "Santuario Burriana | Visual Resources Integration",
+  "entry": "papa-piso-visual-upgrade.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "primary": true,
+  "createdAt": "2026-07-02T02:11:13.955Z",
+  "updatedAt": "2026-07-02T02:11:13.962Z",
+  "sourceSkillId": "agent-browser",
+  "metadata": {
+    "identifier": "papa-piso-visual-upgrade",
+    "artifactType": "text/html",
+    "inferred": false
+  }
+}

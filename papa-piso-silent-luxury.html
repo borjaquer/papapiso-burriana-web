@@ -1,0 +1,328 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santuario Burriana | The Art of Stillness</title>
+    <style>
+        :root {
+            --bg: oklch(10% 0.01 260); 
+            --fg: oklch(98% 0.01 90); 
+            --muted: oklch(60% 0.02 90); 
+            --accent: oklch(90% 0.03 90); /* Champagne Gold */
+            
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+            
+            --ease-luxury: cubic-bezier(0.25, 1, 0.3, 1);
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--fg); 
+            font-family: var(--font-body); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation - Invisible until needed */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            pointer-events: auto;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: var(--ease-luxury);
+        }
+        .logo:hover { opacity: 1; letter-spacing: 0.7em; }
+
+        .nav-cta {
+            pointer-events: auto;
+            text-decoration: none;
+            color: var(--fg);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            padding: 0.8rem 2rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: var(--ease-luxury);
+            backdrop-filter: blur(20px);
+        }
+        .nav-cta:hover {
+            background: var(--fg);
+            color: var(--bg);
+            border-color: var(--fg);
+        }
+
+        /* Immersive Layer System */
+        .scene {
+            position: relative;
+            width: 100%;
+            min-height: 120vh; /* More space for the parallax flow */
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: -10%; left: 0; width: 100%; height: 120%;
+            z-index: 1;
+            transition: transform 0.1s linear;
+        }
+
+        .parallax-bg img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.45) contrast(1.1);
+            will-change: transform;
+        }
+
+        .scene-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 8%;
+        }
+
+        /* Typographic Tension */
+        .h-macro {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 14vw, 8rem);
+            line-height: 0.9;
+            font-style: italic;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s var(--ease-luxury);
+        }
+
+        .h-macro.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .p-refined {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--muted);
+            max-width: 400px;
+            border-left: 1px solid var(--accent);
+            padding-left: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s var(--ease-luxury) 0.3s;
+        }
+
+        .p-refined.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* The Collection Grid - High End Editorial */
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 4vw;
+            padding: 15vh 5vw;
+            background: var(--bg);
+        }
+
+        .editorial-item {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .editorial-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.4) brightness(0.8);
+            transition: all 1s var(--ease-luxury);
+        }
+
+        .editorial-item:hover img {
+            filter: grayscale(0) brightness(1);
+            transform: scale(1.05);
+        }
+
+        .editorial-caption {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--fg);
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.6s var(--ease-luxury);
+        }
+
+        .editorial-item:hover .editorial-caption {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Column Logic */
+        .col-big { grid-column: span 8; aspect-ratio: 16/9; }
+        .col-small { grid-column: span 4; aspect-ratio: 1/1; }
+        .col-tall { grid-column: span 4; aspect-ratio: 3/5; }
+        .col-full { grid-column: span 12; aspect-ratio: 21/9; }
+
+        /* Footer - Absolute Minimal */
+        footer {
+            padding: 10rem 5% 4rem;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--bg), #000);
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            letter-spacing: 0.8em;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            display: block;
+            opacity: 0.6;
+        }
+
+        .footer-copy {
+            font-size: 0.6rem;
+            color: var(--muted);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .editorial-grid > div { grid-column: span 12 !important; aspect-ratio: 4/3 !important; }
+            .h-macro { font-size: 3.5rem; }
+            .nav-cta { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Papa Piso</div>
+        <a href="#reservar" class="nav-cta">Reservar</a>
+    </nav>
+
+    <!-- ESCENA 1: EL SALÓN -->
+    <section class="scene" id="scene-1">
+        <div class="parallax-bg">
+            <img src="mr2t3d3p-salon-comedor-con-saofa-y-televison-.jpeg" alt="Salón">
+        </div>
+        <div class="scene-content">
+            <h1 class="h-macro" data-reveal>Santuario<br>de Luz.</h1>
+            <p class="p-refined" data-reveal>Una experiencia residencial donde el lujo es la ausencia de ruido y la presencia de la luz.</p>
+        </div>
+    </section>
+
+    <!-- ESCENA 2: EL DESCANSO -->
+    <section class="scene" id="scene-2" style="justify-content: flex-end; text-align: right;">
+        <div class="parallax-bg">
+            <img src="mr2t3d25-dormitorio-principal-con-cama-de-matrimonio-.jpeg" alt="Dormitorio Principal">
+        </div>
+        <div class="scene-content" style="margin-left: auto;">
+            <h2 class="h-macro" data-reveal>Arte en<br>el Reposo.</h2>
+            <p class="p-refined" data-reveal style="margin-left: auto; border-left: none; border-right: 1px solid var(--accent); padding-left: 0; padding-right: 2rem; text-align: right;">
+                Espacios diseñados para el silencio absoluto y el renacimiento personal.
+            </p>
+        </div>
+    </section>
+
+    <!-- ESCENA 3: LA COLECCIÓN (Grid Curado) -->
+    <section class="editorial-grid">
+        <div class="editorial-item col-big">
+            <img src="mr2t3d0v-cocinan.jpeg" alt="Cocina">
+            <span class="editorial-caption">Luz & Materia</span>
+        </div>
+        <div class="editorial-item col-small">
+            <img src="mr2t3d6q-unico-baño-_2_.jpeg" alt="Baño">
+            <span class="editorial-caption">Pureza</span>
+        </div>
+        <div class="editorial-item col-tall">
+            <img src="mr2t3d32-hall-recibidor-.jpeg" alt="Hall">
+            <span class="editorial-caption">El Umbral</span>
+        </div>
+        <div class="editorial-item col-small">
+            <img src="mr2t3d2t-dormitorio-secundario-cama-de-matrimonio-.jpeg" alt="Dormitorio 2">
+            <span class="editorial-caption">Serenidad</span>
+        </div>
+        <div class="editorial-item col-big" style="grid-column: span 8;">
+            <img src="mr2t3d4v-tercer-dormitorio-con-escritorio-y-cama-individual-.jpeg" alt="Dormitorio 3">
+            <span class="editorial-caption">Equilibrio</span>
+        </div>
+    </section>
+
+    <!-- ESCENA 4: EL CIELO -->
+    <section class="scene" id="scene-3">
+        <div class="parallax-bg">
+            <img src="mr2t3d50-terraza-sin-vistas-al-mar-.jpeg" alt="Terraza">
+        </div>
+        <div class="scene-content" style="text-align: center; margin: 0 auto;">
+            <h2 class="h-macro" data-reveal>El Horizonte<br>Privado.</h2>
+            <p class="p-refined" data-reveal style="margin: 0 auto; border: none; text-align: center; padding: 0;">
+                La culminación de la estancia: un encuentro directo con el cielo de Burriana.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <span class="footer-logo">Papa Piso</span>
+        <p class="footer-copy">Expérience Résidentielle &bull; Burriana</p>
+    </footer>
+
+    <script>
+        // PARALLAX ENGINE - Suave y Cinematográfico
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            
+            document.querySelectorAll('.parallax-bg').forEach(bg => {
+                const rect = bg.getBoundingClientRect();
+                const offset = window.innerHeight - rect.top;
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    // Mueve la imagen ligeramente en sentido opuesto al scroll
+                    const move = scrolled * 0.05; 
+                    bg.style.transform = `translateY(${move}px)`;
+                }
+            });
+
+            // REVEAL ENGINE - Activa animaciones al entrar en viewport
+            document.querySelectorAll('[data-reveal]').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+
+        // Trigger inicial para la primera escena
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>

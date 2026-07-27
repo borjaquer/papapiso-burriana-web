@@ -48,7 +48,7 @@ export default function ActionButton({
         }
         break;
       case 'share':
-        track('share', { method: navigator.share ? 'native' : 'clipboard' });
+        track('share', { method: typeof navigator.share !== 'undefined' ? 'native' : 'clipboard' });
         if (navigator.share) {
           navigator.share({
             title: 'Apartamento Burriana Playa',

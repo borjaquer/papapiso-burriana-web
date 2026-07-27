@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "Santuario Burriana | Final Agency Polish",
+  "entry": "papa-piso-ultimate-luxury.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "primary": true,
+  "createdAt": "2026-07-02T01:19:08.583Z",
+  "updatedAt": "2026-07-02T01:19:08.588Z",
+  "sourceSkillId": "agent-browser",
+  "metadata": {
+    "identifier": "papa-piso-ultimate-luxury",
+    "artifactType": "text/html",
+    "inferred": false
+  }
+}

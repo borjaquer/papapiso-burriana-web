@@ -1,0 +1,370 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santuario Burriana | Final Visual Polish</title>
+    
+    <!-- SEO JSON-LD (Conservado) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LodgingBusiness",
+          "name": "Apartamentos Piso Burriana",
+          "description": "Apartamento turístico situado frente al Puerto de Burriana y a 6 minutos andando de la playa principal.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Avinguda Mediterrània, 20",
+            "addressLocality": "Borriana",
+            "addressRegion": "Castelló",
+            "postalCode": "12530",
+            "addressCountry": "ES"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 39.8642939,
+            "longitude": -0.0742108
+          },
+          "url": "https://TU-NUEVO-DOMINIO.com",
+          "telephone": "+34-XXX-XXX-XXX",
+          "priceRange": "$$"
+        }
+      ]
+    }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --bg: oklch(10% 0 0);
+            --surface: oklch(14% 0 0);
+            --fg: oklch(96% 0.01 90);
+            --muted: oklch(62% 0.01 90);
+            --accent: oklch(86% 0.06 90);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2? family=Inter:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--fg); 
+            font-family: var(--font-body); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 2rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+            letter-spacing: 0.4em; text-transform: uppercase; cursor: pointer;
+        }
+
+        .nav-cta {
+            text-decoration: none; color: var(--fg); font-size: 0.65rem;
+            text-transform: uppercase; letter-spacing: 0.2em;
+            padding: 0.8rem 1.8rem; border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(10px);
+        }
+        .nav-cta:hover { background: var(--fg); color: var(--bg); }
+
+        .full-section {
+            height: 100vh; width: 100%; position: relative;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+
+        .full-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 120%; 
+            object-fit: cover; z-index: 1; filter: brightness(0.55) contrast(1.1);
+        }
+
+        .full-content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 5%; }
+
+        .display-title {
+            font-family: var(--font-display); font-size: clamp(2.8rem, 10vw, 6.5rem);
+            font-style: italic; line-height: 1.05; margin-bottom: 2rem;
+            opacity: 0; transform: translateY(60px);
+        }
+
+        .display-desc {
+            font-size: 1.1rem; font-weight: 200; color: var(--muted);
+            max-width: 600px; margin: 0 auto; opacity: 0; transform: translateY(30px);
+        }
+
+        .detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); background: var(--bg); }
+        .detail-item { position: relative; height: 80vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .detail-item img { position: absolute; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .detail-item:hover img { transform: scale(1.08); filter: brightness(0.8); }
+        .detail-text { position: relative; z-index: 2; text-align: center; padding: 2rem; opacity: 0; transform: translateY(40px); }
+        .detail-text h3 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 1rem; }
+
+        /* --- NUEVOS RECURSOS VISUALES INTEGRADOS --- */
+        .amenities-bar {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .amenity {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .amenity-icon {
+            width: 40px;
+            height: 40px;
+            color: var(--accent);
+            stroke: var(--accent);
+            stroke-width: 1px;
+            fill: none;
+        }
+
+        .amenity-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        /* Hub de Utilidad */
+        .utility-hub {
+            padding: 10rem 5%;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6rem;
+        }
+
+        .utility-header { text-align: center; max-width: 700px; }
+        .utility-header h2 { font-family: var(--font-display); font-size: 3rem; margin-bottom: 1.5rem; font-style: italic; }
+
+        .calendar-container {
+            width: 100%;
+            max-width: 1000px;
+            background: rgba(255,255,255,0.02);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .calendar-frame { width: 100%; height: 650px; border: none; background: white; border-radius: 8px; }
+
+        .faq-section { width: 100%; max-width: 850px; }
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 2.5rem 0;
+            cursor: pointer;
+            transition: opacity 0.4s ease;
+        }
+        .faq-question { font-family: var(--font-display); font-size: 1.4rem; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            color: var(--muted); font-weight: 200; margin-top: 0;
+        }
+        .faq-item.active .faq-answer { max-height: 400px; margin-top: 1.5rem; }
+
+        footer { padding: 8rem 5% 4rem; text-align: center; background: black; }
+        .footer-logo { font-family: var(--font-display); font-size: 2rem; margin-bottom: 2rem; display: block; opacity: 0.5; }
+
+        @media (max-width: 768px) {
+            .amenities-bar { gap: 2rem; flex-wrap: wrap; }
+            .detail-grid { grid-template-columns: 1fr; }
+            .detail-item { height: 60vh; }
+            .nav-cta { display: none; }
+            .calendar-frame { height: 450px; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <nav>
+        <div class="logo">Papa Piso</div>
+        <a href="#disponibilidad" class="nav-cta" id="cta-reserve">Ver Fechas</a>
+    </nav>
+
+    <section class="full-section" id="section-1">
+        <img src="mr2t3d3p-salon-comedor-con-saofa-y-televison-.jpeg" class="full-bg" alt="Santuario Salón">
+        <div class="full-content">
+            <h1 class="display-title">Silencio, Luz y Espacio.</h1>
+            <p class="display-desc">Una invitación a pausar el tiempo en el corazón de Burriana.</p>
+        </div>
+    </section>
+
+    <section class="full-section" id="section-2">
+        <img src="mr2t3d25-dormitorio-principal-con-cama-de-matrimonio-.jpeg" class="full-bg" alt="Dormitorio">
+        <div class="full-content">
+            <h2 class="display-title">Santuarios de Sueño.</h2>
+            <p class="display-desc">Habitaciones donde la simplicidad se encuentra con la elegancia para un descanso profundo.</p>
+        </div>
+    </section>
+
+    <div class="detail-grid">
+        <div class="detail-item">
+            <img src="mr2t3d0v-cocinan.jpeg" alt="Cocina">
+            <div class="detail-text">
+                <h3>Esencia Culinaria</h3>
+                <p>Equipamiento moderno en un entorno cálido.</p>
+            </div>
+        </div>
+        <div class="detail-item">
+            <img src="mr2t3d6q-unico-baño-_2_.jpeg" alt="Baño">
+            <div class="detail-text">
+                <h3>Pureza Mineral</h3>
+                <p>Espacios de aseo diseñados para el relax.</p>
+            </div>
+        </div>
+        <div class="detail-item">
+            <img src="mr2t3d2t-dormitorio-secundario-cama-de-matrimonio-.jpeg" alt="Dormitorio 2">
+            <div class="detail-text">
+                <h3>Armonía Compartida</h3>
+                <p>Amplitud y confort en cada rincón.</p>
+            </div>
+        </div>
+        <div class="detail-item">
+            <img src="mr2t3d32-hall-recibidor-.jpeg" alt="Hall">
+            <div class="detail-text">
+                <h3>El Umbral</h3>
+                <p>Un recibidor que anticipa la calma del hogar.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="full-section" id="section-3">
+        <img src="mr2t3d50-terraza-sin-vistas-al-mar-.jpeg" class="full-bg" alt="Terraza">
+        <div class="full-content">
+            <h2 class="display-title">Bajo el cielo de Burriana.</h2>
+            <p class="display-desc">Tu espacio privado para conectar con la brisa mediterránea.</p>
+        </div>
+    </section>
+
+    <section class="utility-hub" id="disponibilidad">
+        <div class="utility-header">
+            <h2 id="util-title">Disponibilidad en Tiempo Real</h2>
+            <p class="display-desc" style="margin: 0 auto; opacity: 1;">Calendario sincronizado con Airbnb para asegurar sus fechas.</p>
+        </div>
+
+        <!-- INTEGRACIÓN DE RECURSOS VISUALES: Amenidades de Lujo -->
+        <div class="amenities-bar">
+            <div class="amenity">
+                <svg class="amenity-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <span class="amenity-label">Sábanas Algodón</span>
+            </div>
+            <div class="amenity">
+                <svg class="amenity-icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6m-3-3h6"/></svg>
+                <span class="amenity-label">Climatización</span>
+            </div>
+            <div class="amenity">
+                <svg class="amenity-icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span class="amenity-label">Wifi Alta Vel.</span>
+            </div>
+            <div class="amenity">
+                <svg class="amenity-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7h-6v6h-6v-6h-6z"/><path d="M9 22v-6h6v6"/></svg>
+                <span class="amenity-label">Ubicación Premium</span>
+            </div>
+        </div>
+
+        <div class la="calendar-container" id="cal-container">
+            <iframe class="calendar-frame" src="https://www.airbnb.com/calendar" title="Calendario Airbnb"></iframe>
+        </div>
+
+        <div class="faq-section">
+            <div class="utility-header" style="text-align: left; max-width: 100%;">
+                <h2 style="font-size: 2rem;">Consultas Frecuentes</h2>
+            </div>
+            
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">¿A qué distancia andando está la playa? <span>+</span></div>
+                <div class="faq-answer">El apartamento está ubicado frente al puerto. Caminando en línea recta por la Avenida Mediterrània, tardarás exactamente 6 minutos a pie (450 metros) en pisar la arena de la Playa del Arenal.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">¿Cuáles son las mejores playas cercanas? <span>+</span></div>
+                <div class="faq-answer">Tienes la Playa del Arenal a 6 minutos andando (arena fina y todos los servicios) y la Playa del Grao a unos 12 minutos andando (más tranquila y de cantos rodados).</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">¿El apartamento está en primera línea de playa? <span>+</span></div>
+                <div class="faq-answer">Nos encontramos en la Avenida Mediterrània, 20, frente al Puerto de Burriana y el Club Náutico. Esto evita el ruido nocturno de la primera línea, manteniendo la playa a un paseo de 5 minutos.</div>
+            </div>
+        </div_section>
+    </section>
+
+    <footer>
+        <span class="footer-logo">Papa Piso</span>
+        <p style="color: var(--muted); font-size: 0.8rem; letter-spacing: 0.1em;">EXPERIENCIA RESIDENCIAL DE LUJO</p>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.getElementById('cta-reserve').addEventListener('click', function(e) {
+            e.preventDefault();
+            gsap.to(window, { duration: 1.5, scrollTo: "#disponibilidad", ease: "power3.inOut" });
+        });
+
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+            tl.to(".display-title", { opacity: 1, y: 0, duration: 1.8, ease: "expo.out" })
+              .to(".display-desc", { opacity: 1, y: 0, duration: 1.4, ease: "expo.out" }, "-=1.2");
+        });
+
+        document.querySelectorAll('.full-section').forEach(section => {
+            const img = section.querySelector('.full-bg');
+            const title = section.querySelector('.display-title');
+            const desc = section.querySelector('.display-desc');
+
+            gsap.to(img, {
+                scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: true },
+                y: "15%", 
+                ease: "none"
+            });
+
+            if(title && desc) {
+                gsap.to([title, desc], {
+                    scrollTrigger: { trigger: section, start: "top 65%", toggleActions: "play none none reverse" },
+                    opacity: 1, y: 0, duration: 1.5, stagger: 0.4, ease: "expo.out"
+                });
+            }
+        });
+
+        gsap.to(".detail-text", {
+            scrollTrigger: { trigger: ".detail-grid", start: "top 80%" },
+            opacity: 1, y: 0, duration: 1.2, stagger: 0.25, ease: "expo.out"
+        });
+
+        // Animación coordinada de la zona de utilidad
+        const utilTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".utility-hub",
+                start: "top 75%",
+            }
+        });
+
+        utilTl.to(".amenities-bar", { opacity: 1, y: 0, duration: 1, ease: "expo.out" })
+              .to(".calendar-container", { opacity: 1, scale: 1, duration: 1.5, ease: "expo.out" }, "-=0.5");
+    </script>
+</body>
+</html>

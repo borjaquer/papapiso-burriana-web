@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "Santuario Burriana | Atmospheric Final Restored",
+  "entry": "papa-piso-atmospheric-final-restored-full.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "primary": true,
+  "createdAt": "2026-07-02T02:46:11.803Z",
+  "updatedAt": "2026-07-03T00:50:10.095Z",
+  "sourceSkillId": "agent-browser",
+  "metadata": {
+    "identifier": "papa-piso-atmospheric-final-restored-full",
+    "artifactType": "text/html",
+    "inferred": false
+  }
+}

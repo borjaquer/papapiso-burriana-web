@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "Santuario Burriana | Conversión de Lujo",
+  "entry": "papa-piso-luxury-conversion.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "primary": true,
+  "createdAt": "2026-07-02T01:16:03.860Z",
+  "updatedAt": "2026-07-02T01:16:03.867Z",
+  "sourceSkillId": "agent-browser",
+  "metadata": {
+    "identifier": "papa-piso-luxury-conversion",
+    "artifactType": "text/html",
+    "inferred": false
+  }
+}

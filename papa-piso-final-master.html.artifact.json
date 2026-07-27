@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "Santuario Burriana | Master Edition",
+  "entry": "papa-piso-final-master.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "primary": true,
+  "createdAt": "2026-07-02T02:07:35.515Z",
+  "updatedAt": "2026-07-02T02:07:35.522Z",
+  "sourceSkillId": "agent-browser",
+  "metadata": {
+    "identifier": "papa-piso-final-master",
+    "artifactType": "text/html",
+    "inferred": false
+  }
+}

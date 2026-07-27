@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "Santuario Burriana | Solución Final Sin Recortes",
+  "entry": "papa-piso-fixed-gallery.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "primary": true,
+  "createdAt": "2026-07-03T01:27:58.610Z",
+  "updatedAt": "2026-07-03T01:27:58.610Z",
+  "sourceSkillId": "agent-browser",
+  "metadata": {
+    "identifier": "papa-piso-fixed-gallery",
+    "artifactType": "text/html",
+    "inferred": false
+  }
+}

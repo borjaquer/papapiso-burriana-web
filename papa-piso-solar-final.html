@@ -1,0 +1,469 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santuario Burriana | Solar Gallery</title>
+    
+    <!-- SEO JSON-LD: Datos Estructurados de Negocio y FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LodgingBusiness",
+          "name": "Apartamentos Piso Burriana",
+          "description": "Apartamento turístico situado frente al Puerto de Burriana y a 6 minutos andando de la playa principal.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Avinguda Mediterrània, 20",
+            "addressLocality": "Borriana",
+            "addressRegion": "Castelló",
+            "postalCode": "12530",
+            "addressCountry": "ES"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 39.8642939,
+            "longitude": -0.0742108
+          },
+          "url": "https://TU-NUEVO-DOMINIO.com",
+          "telephone": "+34-XXX-XXX-XXX",
+          "priceRange": "$$"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿A qué distancia andando está el apartamento de la playa?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "El apartamento está ubicado frente al puerto. Caminando en línea recta por la Avenida Mediterrània, tardarás exactamente 6 minutos a pie (450 metros) en pisar la arena de la Playa del Arenal."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuáles son las mejores playas cercanas y cuánto se tarda en llegar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Tienes la Playa del Arenal a 6 minutos andando (arena fina y todos los servicios) y la Playa del Grao a unos 12 minutos andando (más tranquila y de cantos rodados)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿El apartamento está en primera línea de playa?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nos encontramos en la Avenida Mediterrània, 20, frente al Puerto de Burriana y el Club Náutico. Esto evita el ruido nocturno de la primera línea, manteniendo la playa a un paseo de 5 minutos."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: oklch(100% 0 0); 
+            --fg: oklch(25% 0.02 260); 
+            --muted: oklch(50% 0.01 260); 
+            --accent: oklch(40% 0.05 40); 
+            
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+            
+            --ease-luxury: cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        @import url('https://fonts.googleapis.com/css2? family=Inter:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--fg); 
+            font-family: var(--font-body); 
+            line-height: 1.7; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            mix-blend-mode: multiply;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--fg);
+        }
+
+        .nav-cta {
+            text-decoration: none;
+            color: var(--fg);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--fg);
+            transition: all 0.3s var(--ease-luxury);
+        }
+        .nav-cta:hover {
+            background: var(--fg);
+            color: white;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            text-align: center;
+        }
+
+        .hero-image-frame {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1.8s var(--ease-luxury);
+            box-shadow: 0 40px 120px rgba(0,0,0,0.08);
+        }
+        .hero-image-frame.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-image-frame img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            max-width: 900px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s var(--ease-luxury) 0.5s;
+        }
+        .hero-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .curated-flow {
+            padding: 10vh 5vw;
+        }
+
+        .flow-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10vw;
+            align-items: center;
+            margin-bottom: 20vh;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s var(--ease-luxury);
+        }
+        .flow-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .flow-item.reverse { direction: rtl; }
+        .flow-item.reverse .flow-text { direction: ltr; }
+
+        .flow-image {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .flow-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1.5s var(--ease-luxury);
+        }
+        .flow-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .flow-text {
+            max-width: 400px;
+        }
+
+        .flow-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .flow-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .flow-desc {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--muted);
+        }
+
+        .minimal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 5vw;
+            margin-bottom: 10vh;
+        }
+
+        .grid-cell {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: #f9f9f9;
+        }
+        .grid-cell img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.2);
+            transition: all 0.6s var(--ease-luxury);
+        }
+        .grid-cell:hover img {
+            filter: grayscale(0);
+            transform: scale(1.05);
+        }
+
+        /* NEW: Calendar and Utility Section */
+        .utility-section {
+            padding: 10vh 5vw;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .utility-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .calendar-wrapper {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 6rem;
+            padding: 1rem;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        .calendar-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+
+        /* FAQ Section - Minimal Accordion */
+        .faq-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 2rem 0;
+            cursor: pointer;
+        }
+
+        .faq-question {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-luxury);
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-top: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            margin-top: 1rem;
+        }
+        .faq-item.active .faq-question {
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            border-top: 0.5px solid rgba(0,0,0,0.05);
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .flow-item { grid-template-columns: 1fr; gap: 3rem; }
+            .minimal-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.5rem; }
+            .nav-cta { display: none; }
+            .calendar-frame { height: 400px; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <nav>
+        <div class="logo">Papa Piso</div>
+        <a href="#disponibilidad" class="nav-cta">Ver Disponibilidad</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-image-frame" data-reveal>
+            <img src="mr2t3d3p-salon-comedor-con-saofa-y-televison-.jpeg" alt="Salón">
+        </div>
+        <h1 class="hero-title" data-reveal>El Lujo de la<br>Sencillez.</h1>
+    </section>
+
+    <!-- FLOW -->
+    <section class="curated-flow">
+        <div class="flow-item" data-reveal>
+            <div class="flow-image">
+                <img src="mr2t3d25-dormitorio-principal-con-cama-de-matrimonio-.jpeg" alt="Dormitorio">
+            </div>
+            <div class="flow-text">
+                <span class="flow-label">01 / El Reposo</span>
+                <h2 class="flow-title">Santuarios de sueño.</h2>
+                <p class="flow-desc">Espacios donde la luz natural define el ritmo del día y la serenidad es la única prioridad.</p>
+            </div>
+        </div>
+
+        <div class="flow-item reverse" data-reveal>
+            <div class="flow-image">
+                <img src="mr2t3d0v-cocinan.jpeg" alt="Cocina">
+            </div>
+            <div class="flow-text">
+                <span class="flow-label">02 / Materia</span>
+                <h2 class="flow-title">Funcionalidad pura.</h2>
+                <p class="flow-desc">Equipamiento contemporáneo integrado en una atmósfera de limpieza y orden absoluto.</p>
+            </div>
+        </div>
+
+        <div class="flow-item" data-reveal>
+            <div class="flow-image">
+                <img src="mr2t3d50-terraza-sin-vistas-al-mar-.jpeg" alt="Terraza">
+            </div>
+            <div class="flow-text">
+                <span class="flow-label">03 / Aire Libre</span>
+                <h2 class="flow-title">El mirador privado.</h2>
+                <p class="flow-desc">Un encuentro directo con la brisa de Burriana, diseñado para la contemplación.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="minimal-grid">
+        <div class="grid-cell"><img src="mr2t3d6q-unico-baño-_2_.jpeg" alt="Baño"></div>
+        <div class="grid-cell"><img src="mr2t3d32-hall-recibidor-.jpeg" alt="Hall"></div>
+        <div class="grid-cell"><img src="mr2t3d2t-dormitorio-secundario-cama-de-matrimonio-.jpeg" alt="Dormitorio 2"></div>
+    </section>
+
+    <!-- UTILITY: Calendario y FAQ -->
+    <section class="utility-section" id="disponibilidad">
+        <h2 class="utility-title">Planifique su estancia</h2>
+        
+        <div class="calendar-wrapper">
+            <!-- Aquí va el iframe de Airbnb. He dejado el espacio optimizado -->
+            <iframe class="calendar-frame" src="https://www.airbnb.com/calendar" title="Calendario de Disponibilidad"></iframe>
+            <p style="font-size: 0.7rem; color: var(--muted); margin-top: 1rem;">Sincronizado en tiempo real con Airbnb</p>
+        </div>
+
+        <h2 class="utility-title" style="margin-top: 8rem;">Consultas Curadas</h2>
+        <div class="faq-container">
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">¿A qué distancia está la playa? <span>+</span></div>
+                <div class="faq-answer">El apartamento está ubicado frente al puerto. Caminando en línea recta por la Avenida Mediterrània, tardarás exactamente 6 minutos a pie (450 metros) en pisar la arena de la Playa del Arenal.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">¿Cuáles son las mejores playas cercanas? <span>+</span></div>
+                <div class="faq-answer">Tienes la Playa del Arenal a 6 minutos andando (arena fina y todos los servicios) y la Playa del Grao a unos 12 minutos andando (más tranquila y de cantos rodados).</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-question">¿Es primera línea de playa? <span>+</span></div>
+                <div class="faq-answer">Nos encontramos en la Avenida Mediterrània, 20, frente al Puerto de Burriana y el Club Náutico. Esto evita el ruido nocturno de la primera línea, manteniendo la playa a un paseo de 5 minutos.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="footer-brand">Papa Piso</span>
+        <p style="font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);">
+            Curated Residence &bull; Burriana, Spain
+        </p>
+    </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('[data-reveal]').forEach(el => {
+            observer.observe(el);
+        });
+
+        window.dispatchEvent(new Event('load'));
+        document.querySelector('.hero-image-frame').classList.add('visible');
+        document.querySelector('.hero-title').classList.add('visible');
+    </script>
+</body
+</html

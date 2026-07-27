@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "Santuario Burriana | Edición Refinada",
+  "entry": "papa-piso-atmospheric-refined.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "primary": true,
+  "createdAt": "2026-07-02T01:12:28.699Z",
+  "updatedAt": "2026-07-02T01:12:28.705Z",
+  "sourceSkillId": "agent-browser",
+  "metadata": {
+    "identifier": "papa-piso-atmospheric-refined",
+    "artifactType": "text/html",
+    "inferred": false
+  }
+}
